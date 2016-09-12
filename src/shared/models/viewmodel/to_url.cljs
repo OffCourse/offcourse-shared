@@ -7,7 +7,7 @@
                    (first (spec/conform ::specs/viewmodel vm))))
 
 (defmethod to-url :signup-view [{:keys [type dependencies] :as vm} routes]
-  (bidi/path-for routes :new-user-view))
+  (bidi/path-for routes :signup-view))
 
 (defmethod to-url :course-view [{:keys [type course checkpoint] :as vm} routes]
   (let [{:keys [course-slug organization curator]} course

@@ -9,10 +9,11 @@
                                                   :credentials  ::base/credentials
                                                   :profile      ::base/profile
                                                   :courses      (spec/* ::course/course)
-                                                  :course       ::course/course)))
+                                                  :course       ::course/course
+                                                  :home         #{:home}
+                                                  :new-user     #{:new-user})))
 
-
-(def action-types #{:update :sign-in :sign-out :add})
+(def action-types #{:go :update :sign-in :sign-out :add :create})
 
 (spec/def ::action (spec/cat :action-type (spec/+ action-types)
                              :action-payload (spec/? ::action-payload)))

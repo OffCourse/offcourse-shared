@@ -31,8 +31,8 @@
 (defmethod create :course-org-view [type result]
   (-create {:course (select-keys result [:curator :organization :course-slug])}))
 
-(defmethod create :signup-view [type]
-  (-create {:user {}}))
+(defmethod create :signup-view [type result]
+  (-create {:new-user {}}))
 
 (defmethod create :home-view []
   (-create {:collection {:collection-type "flags"
