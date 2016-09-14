@@ -2,14 +2,17 @@
   (:refer-clojure :exclude [get -reset remove])
   (:require [shared.specs.core :as specs]
             [shared.protocols.queryable :refer [Queryable]]
-            [shared.models.course.get :as get]
+            [shared.models.course.get :as get-impl]
+            [shared.models.course.missing-data :as md-impl]
             [shared.models.checkpoint.index :as checkpoint]
             [shared.protocols.specced :refer [Specced]]
-            [cljs.spec :as spec]))
+            [cljs.spec :as spec]
+            [shared.protocols.loggable :as log]))
 
 (defrecord Course []
   Queryable
-  (-get [this query] (get/get this query))
+  (-get [this query] (get-impl/get this query))
+  (-missing-data [this query] (md-impl/missing-data this query))
   Specced
   (-resolve [this] :courses))
 

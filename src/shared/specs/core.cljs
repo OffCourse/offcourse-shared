@@ -1,6 +1,7 @@
 (ns shared.specs.core
   (:require [cljs.spec :as spec]
             [shared.specs.event :as event]
+            [shared.specs.base :as base]
             [shared.specs.query :as query]
             [shared.specs.action :as action]
             [shared.specs.payload :as payload]
@@ -21,6 +22,7 @@
 
 (spec/def ::spec spec/spec?)
 (spec/def ::meta (spec/keys :req-un [::spec]))
+(spec/def ::user (spec/keys :req-un [::base/user-name]))
 
 (spec/def ::single-or-multiple? (spec/or :single map?
                                          :multiple (spec/* map?)))

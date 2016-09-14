@@ -17,7 +17,7 @@
                      (first (spec/conform ::specs/payload data))
                      :query)))
 
-(defmethod create :profile [query]
+(defmethod create :appstate [query]
   (with-meta (map->Query query) {:spec ::specs/query}))
 
 (defmethod create :course [{:keys [goal curator] :as query}]

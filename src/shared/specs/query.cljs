@@ -10,14 +10,12 @@
 (spec/def ::course          (spec/keys :req-un [::base/course-slug ::base/curator]))
 (spec/def ::checkpoint      (spec/keys :req-un [::checkpoint-slug]))
 (spec/def ::tags            (spec/keys :req-un [::base/tags]))
-(spec/def ::urls            (spec/keys :req-un [::base/urls]))
-(spec/def ::url             (spec/keys :req-un [::base/url]))
+(spec/def ::urls            (spec/* ::base/url))
 
 (spec/def ::query (spec/or :collection ::collection
                            :tags ::tags
-                           :urls ::urls
                            :user ::base/user
-                           :resource ::url
+                           :resources (spec/keys :req-un [::urls])
                            :viewmodel ::viewmodel/viewmodel
                            :checkpoint ::checkpoint
                            :course ::course))

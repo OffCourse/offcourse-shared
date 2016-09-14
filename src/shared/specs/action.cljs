@@ -5,6 +5,8 @@
             [shared.specs.helpers :as helpers]
             [shared.specs.base :as base]))
 
+(spec/def ::user (spec/keys :req-un [::base/user-name]))
+
 (spec/def ::action-payload (spec/nilable (spec/or :viewmodel    ::viewmodel/viewmodel
                                                   :credentials  ::base/credentials
                                                   :profile      ::base/profile
