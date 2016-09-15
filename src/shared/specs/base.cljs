@@ -21,4 +21,6 @@
 (spec/def ::site-title string?)
 (spec/def ::user (spec/keys :req-un [::auth-token ::logged-in-at]
                             :opt-un [::user-name]))
-(spec/def ::credentials (spec/keys :req-un [::auth-token]))
+
+(spec/def ::auth-profile map?)
+(spec/def ::credentials (spec/keys :req-un [::auth-token ::auth-profile]))

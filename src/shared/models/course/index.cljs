@@ -30,7 +30,6 @@
       add-checkpoints
       (with-meta {:spec ::specs/course})))
 
-
 (defn add-id [{:keys [organization curator] :as course}]
   (let [hash (hash course)
         id (str organization "::" curator "::" hash)]

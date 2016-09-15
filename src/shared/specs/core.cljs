@@ -8,6 +8,7 @@
             [shared.specs.viewmodel :as viewmodel]
             [shared.specs.appstate :as appstate]
             [shared.specs.course :as course]
+            [shared.specs.resource :as resource]
             [shared.specs.helpers :as helpers]))
 
 (spec/def ::query ::query/query)
@@ -19,6 +20,7 @@
 
 (spec/def ::appstate ::appstate/appstate)
 (spec/def ::course ::course/course)
+(spec/def ::resource ::resource/resource)
 
 (spec/def ::spec spec/spec?)
 (spec/def ::meta (spec/keys :req-un [::spec]))

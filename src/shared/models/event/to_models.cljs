@@ -1,5 +1,6 @@
 (ns shared.models.event.to-models
   (:require [shared.models.course.index :as co]
+            [shared.models.resource.index :as rs]
             [shared.models.user.index :as user]
             [shared.models.profile.index :as profile]
             [cljs.spec :as spec]
@@ -12,6 +13,9 @@
 
 (defmethod to-models :profile [[_ payload]]
   (profile/create payload))
+
+(defmethod to-models :resources [[_ payload]]
+  (map rs/create payload))
 
 (defmethod to-models :courses [[_ payload]]
   (map co/create payload))
