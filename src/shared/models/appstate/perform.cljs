@@ -5,9 +5,9 @@
             [shared.models.user.index :as user]
             [shared.protocols.loggable :as log]))
 
-(defn- add [store course]
-  (if-not (qa/get store (query/create course))
-    (update-in store [(sp/resolve course)] #(conj % course))
+(defn- add [store item]
+  (if-not (qa/get store (query/create item))
+    (update-in store [(sp/resolve item)] #(conj % item))
     store))
 
 (defmulti perform (fn [as action] (sp/resolve action)))
@@ -26,6 +26,9 @@
 
 (defmethod perform [:add :courses] [store [_ courses]]
   (reduce add store courses))
+
+(defmethod perform [:add :resources] [store [_ resources]]
+  (reduce add store resources))
 
 (defmethod perform [:add :course] [store [_ course]]
   (add store course))

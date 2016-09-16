@@ -4,7 +4,7 @@
 
 (defrecord Resource []
   Specced
-  (-resolve [this] :courses))
+  (-resolve [this] :resources))
 
 (defn create [raw-resource]
   (-> raw-resource

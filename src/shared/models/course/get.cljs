@@ -4,7 +4,10 @@
             [shared.protocols.queryable :refer [Queryable]]
             [clojure.set :as set]
             [shared.protocols.specced :as sp]
-            [cuerdas.core :as str]))
+            [cuerdas.core :as str]
+            [shared.models.appstate.paths :as paths]
+            [shared.protocols.loggable :as log])
+  (:require-macros [com.rpl.specter.macros :refer [select-first]]))
 
 (defmulti get (fn [_ query] (sp/resolve query)))
 
@@ -21,10 +24,8 @@
        (map :url)
        (into #{})))
 
-(defmethod get :checkpoint [{:keys [checkpoints]} {:keys [checkpoint-slug task checkpoint-id] :as q}]
-  (if checkpoint-slug
-    (->> checkpoints (some #(if (= (:checkpoint-slug %) checkpoint-slug) %)))
-    (first checkpoints)))
+(defmethod get :checkpoint [{:keys [checkpoints]} query]
+  (select-first (paths/checkpoint query) checkpoints))
 
 
 
