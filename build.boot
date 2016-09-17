@@ -14,6 +14,7 @@
                   [weasel                      "0.7.0"          :scope "test"]
                   [adzerk/bootlaces            "0.1.13"         :scope "test"]
                   [org.clojure/tools.nrepl     "0.2.12"         :scope "test"]
+                  [funcool/cuerdas             "0.8.0"]
                   [com.rpl/specter             "0.12.0"]
                   [org.clojure/clojure         "1.9.0-alpha10"]
                   [org.clojure/core.async      "0.2.385"]

@@ -27,7 +27,7 @@
       (log/error response (sp/errors response)))))
 
 (defn react
-  "Has a component react to an event based on the event's specification type"
+  "Has a service react to an event based on the event's specification type"
   [this event]
   (-react this event))
 

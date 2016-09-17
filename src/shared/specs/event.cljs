@@ -31,12 +31,18 @@
                              :offcourse ::event
                              :api      ::api-event))
 
+(spec/def ::data any?)
+(spec/def ::explanation any?)
+(spec/def ::error (spec/keys :req-un [::data ::explanation]))
+
 (spec/def ::event-payload (spec/or :action              ::action/action
                                    :query               ::query/query
-                                   :data                ::payload/payload))
+                                   :data                ::payload/payload
+                                   :error               ::error))
 
 (spec/def ::event (helpers/tuple-spec [:updated :found :not-found :granted :revoked :fetched
-                                       :requested :requested-data :rendered :refreshed] ::event-payload))
+                                       :failed-to-convert :requested :requested-data
+                                       :rendered :refreshed] ::event-payload))
 
 
 #_(spec/def ::event (spec/or :kinesis ::kinesis-event

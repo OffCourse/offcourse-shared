@@ -28,6 +28,3 @@
 
 (spec/def ::single-or-multiple? (spec/or :single map?
                                          :multiple (spec/* map?)))
-
-(spec/def ::map-type (spec/or :keywordized (spec/map-of keyword? any?)
-                              :raw (spec/map-of string? any?)))
