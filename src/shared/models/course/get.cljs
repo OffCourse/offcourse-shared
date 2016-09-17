@@ -26,6 +26,3 @@
 
 (defmethod get :checkpoint [{:keys [checkpoints]} query]
   (select-first (paths/checkpoint query) checkpoints))
-
-
-

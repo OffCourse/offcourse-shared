@@ -4,7 +4,6 @@
 
 (spec/def ::content string?)
 (spec/def ::resource-url ::base/url)
-(spec/def ::resource (spec/keys :req-un [::resource-url
-                                         ::content]))
 
+(spec/def ::resource (spec/keys :req-un [::resource-url ::content]))
 (spec/def ::resources (spec/* ::resource))

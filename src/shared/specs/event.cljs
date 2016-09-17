@@ -36,8 +36,8 @@
 (spec/def ::error (spec/keys :req-un [::data ::explanation]))
 
 (spec/def ::event-payload (spec/or :action              ::action/action
-                                   :query               ::query/query
                                    :data                ::payload/payload
+                                   :query               ::query/query
                                    :error               ::error))
 
 (spec/def ::event (helpers/tuple-spec [:updated :found :not-found :granted :revoked :fetched
