@@ -35,7 +35,6 @@
                                    :query               ::query/query
                                    :data                ::payload/payload))
 
-
 (spec/def ::event (helpers/tuple-spec [:updated :found :not-found :granted :revoked :fetched
                                        :requested :requested-data :rendered :refreshed] ::event-payload))
 

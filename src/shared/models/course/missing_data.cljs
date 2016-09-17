@@ -7,9 +7,10 @@
        (map :resource-url)
        (into #{})))
 
-(defn missing-data [{:keys [checkpoints]} {:keys [resources]}]
+(defn missing-data [{:keys [course-id checkpoints]} {:keys [resources]}]
   (let [resources-urls (create-url-set resources)
         checkpoint-urls (create-url-set checkpoints)
         missing-urls (set/difference checkpoint-urls resources-urls)]
   (when-not (empty? missing-urls)
-    {:urls (into [] missing-urls)})))
+    (map (fn [url] {:resource-url url
+                    :course-id course-id}) (into [] missing-urls)))))
