@@ -3,7 +3,9 @@
             [shared.models.event.to-models :refer [to-models]]
             [shared.protocols.convertible :as cv :refer [Convertible]]
             [shared.protocols.specced :refer [Specced]]
-            [shared.specs.core :as specs]))
+            [shared.specs.core :as specs]
+            [shared.protocols.loggable :as log]
+            [shared.protocols.specced :as sp]))
 
 (spec/fdef create
            :args (spec/cat :event-type ::specs/event)
@@ -13,11 +15,7 @@
 (defn override [event]
   (specify event
     Convertible
-    (-to-models [this] (to-models this))
-    Specced
-    (-resolve [[data-type :as this]]
-      (let [payload-type (-> (spec/conform (:spec (meta this)) this) second first)]
-        [data-type payload-type]))))
+    (-to-models [this] (to-models this))))
 
 (defn create [[source type payload]]
   (-> [(keyword type) payload]

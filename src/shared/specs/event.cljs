@@ -5,47 +5,24 @@
             [shared.specs.query :as query]
             [shared.specs.helpers :as helpers]
             [shared.specs.action :as action]
-            [shared.specs.base :as base]))
+            [shared.specs.base :as base]
+            [shared.protocols.loggable :as log]))
 
-(spec/def ::kinesis map?)
-(spec/def ::dynamo map?)
+(spec/def ::event-type keyword?)
 
-(spec/def ::kinesis-record (spec/keys :req-un [::kinesis]))
-(spec/def ::dynamo-record (spec/keys :req-un [::dynamodb]))
+(spec/def ::action ::action/action)
+(spec/def ::payload ::payload/payload)
+(spec/def ::query ::query/query)
 
-(spec/def ::Records (spec/or :kinesis (spec/* ::kinesis-record)
-                             :dynamodb (spec/* ::dynamo-record)))
+(defmulti  event-spec (fn [[event-type _ :as event]] event-type))
 
-(spec/def ::type keyword?)
+(defmethod event-spec :requested [_] (spec/tuple ::event-type ::action/action))
+(defmethod event-spec :not-found [_] (spec/tuple ::event-type ::query/query))
+(defmethod event-spec :refreshed [_] (spec/tuple ::event-type ::payload/payload))
+(defmethod event-spec :found     [_] (spec/tuple ::event-type ::payload/payload))
+(defmethod event-spec :granted   [_] (spec/tuple ::event-type ::payload/payload))
+(defmethod event-spec :revoked   [_] (spec/tuple ::event-type ::payload/payload))
+(defmethod event-spec :refreshed [_] (spec/tuple ::event-type ::payload))
+(defmethod event-spec :rendered  [_] (spec/tuple ::event-type nil?))
 
-(spec/def ::api-event (spec/keys :req-un [::type]))
-
-(spec/def ::kinesis-event (spec/and (spec/keys :req-un [::Records])
-                                    #(= (first (:Records %)) :kinesis)))
-
-(spec/def ::dynamo-event (spec/and (spec/keys :req-un [::Records])
-                                    #(= (first (:Records %)) :dynamodb)))
-
-#_(spec/def ::event (spec/or :kinesis ::kinesis-event
-                             :dynamodb ::dynamo-event
-                             :offcourse ::event
-                             :api      ::api-event))
-
-(spec/def ::data any?)
-(spec/def ::explanation any?)
-(spec/def ::error (spec/keys :req-un [::data ::explanation]))
-
-(spec/def ::event-payload (spec/or :action              ::action/action
-                                   :data                ::payload/payload
-                                   :query               ::query/query
-                                   :error               ::error))
-
-(spec/def ::event (helpers/tuple-spec [:updated :found :not-found :granted :revoked :fetched
-                                       :failed-to-convert :requested :requested-data
-                                       :rendered :refreshed] ::event-payload))
-
-
-#_(spec/def ::event (spec/or :kinesis ::kinesis-event
-                             :dynamodb ::dynamo-event
-                             :offcourse ::event
-                             :api      ::api-event))
+(spec/def ::event (spec/multi-spec event-spec ::event-type))
