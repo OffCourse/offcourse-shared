@@ -24,6 +24,9 @@
   (let [checkpoints (map-indexed #(assoc %2 :checkpoint-id %1) checkpoints)]
     (assoc course :checkpoints checkpoints)))
 
+(defn fork [course {:keys [user]}]
+  (:user-name user))
+
 (defn create [raw-course]
   (-> raw-course
       map->Course

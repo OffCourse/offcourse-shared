@@ -1,5 +1,6 @@
 (ns shared.models.appstate.perform
   (:require [shared.models.query.index :as query]
+            [shared.models.course.index :as course]
             [shared.protocols.queryable :as qa]
             [shared.protocols.specced :as sp]
             [shared.models.user.index :as user]
@@ -31,7 +32,7 @@
   (reduce add store resources))
 
 (defmethod perform [:fork :course] [store [_ course]]
-  (log/log course)
+  (log/log (course/fork course store))
   store)
 
 (defmethod perform [:add :course] [store [_ course]]
