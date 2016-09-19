@@ -30,5 +30,9 @@
 (defmethod perform [:add :resources] [store [_ resources]]
   (reduce add store resources))
 
+(defmethod perform [:fork :course] [store [_ course]]
+  (log/log course)
+  store)
+
 (defmethod perform [:add :course] [store [_ course]]
   (add store course))

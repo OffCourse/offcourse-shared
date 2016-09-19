@@ -23,5 +23,3 @@
                   :source source
                   :timestamp (.now js/Date)})
       override))
-
-#_(stest/instrument `create)
