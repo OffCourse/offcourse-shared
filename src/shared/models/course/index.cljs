@@ -7,7 +7,8 @@
             [shared.models.checkpoint.index :as checkpoint]
             [shared.protocols.specced :refer [Specced]]
             [cljs.spec :as spec]
-            [shared.protocols.loggable :as log]))
+            [shared.protocols.loggable :as log]
+            [clojure.string :as str]))
 
 (defrecord Course []
   Queryable
@@ -24,8 +25,13 @@
   (let [checkpoints (map-indexed #(assoc %2 :checkpoint-id %1) checkpoints)]
     (assoc course :checkpoints checkpoints)))
 
-(defn fork [course {:keys [user]}]
-  (:user-name user))
+(defn fork [{:keys [base-id course-id organization goal] :as course} {:keys [user]}]
+  (let [hash (last (str/split base-id "::"))
+        new-id (str organization "::" (:user-name user) "::" hash)]
+    (assoc course
+           :course-id new-id
+           :forked-from course-id
+           :curator (:user-name user))))
 
 (defn create [raw-course]
   (-> raw-course

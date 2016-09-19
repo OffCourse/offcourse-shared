@@ -32,8 +32,9 @@
   (reduce add store resources))
 
 (defmethod perform [:fork :course] [store [_ course]]
-  (log/log (course/fork course store))
-  store)
+  (let [{:keys [course-id] :as fork} (course/fork course store)]
+    (log/log "COURSE: " (update course :forks #(conj % course-id)))
+    (add store fork)))
 
 (defmethod perform [:add :course] [store [_ course]]
   (add store course))
