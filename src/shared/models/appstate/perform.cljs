@@ -37,7 +37,7 @@
   (let [{:keys [course-id] :as fork} (course/fork course store)
         courses (transform [(paths/course course) :forks] #(conj % course-id) courses)]
     (-> store
-        (update-in [:courses] identity)
+        (assoc-in [:courses] courses)
         (add fork))))
 
 (defmethod perform [:add :course] [store [_ course]]
