@@ -1,10 +1,12 @@
 (ns shared.models.appstate.perform
   (:require [shared.models.query.index :as query]
+            [shared.models.appstate.paths :as paths]
             [shared.models.course.index :as course]
             [shared.protocols.queryable :as qa]
             [shared.protocols.specced :as sp]
             [shared.models.user.index :as user]
-            [shared.protocols.loggable :as log]))
+            [shared.protocols.loggable :as log])
+  (:require-macros [com.rpl.specter.macros :refer [transform]]))
 
 (defn- add [store item]
   (if-not (qa/get store (query/create item))
@@ -31,10 +33,12 @@
 (defmethod perform [:add :resources] [store [_ resources]]
   (reduce add store resources))
 
-(defmethod perform [:fork :course] [store [_ course]]
-  (let [{:keys [course-id] :as fork} (course/fork course store)]
-    (log/log "COURSE: " (update course :forks #(conj % course-id)))
-    (add store fork)))
+(defmethod perform [:fork :course] [{:keys [courses] :as store} [_ course]]
+  (let [{:keys [course-id] :as fork} (course/fork course store)
+        courses (transform [(paths/course course) :forks] #(conj % course-id) courses)]
+    (-> store
+        (update-in [:courses] identity)
+        (add fork))))
 
 (defmethod perform [:add :course] [store [_ course]]
   (add store course))

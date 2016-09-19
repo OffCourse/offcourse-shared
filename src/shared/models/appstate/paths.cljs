@@ -3,9 +3,10 @@
             [cuerdas.core :as str]
             [shared.protocols.loggable :as log]))
 
-(defn course [{:keys [course-id course-slug curator goal] :as course}]
-  [ALL #(and (= (-> % :goal str/slugify) course-slug)
-                      (= (:curator %) curator))])
+(defn course [{:keys [course-id goal course-slug curator goal] :as course}]
+  (let [course-slug (or course-slug (str/slugify goal))]
+    [ALL #(and (= (-> % :goal str/slugify) course-slug)
+               (= (:curator %) curator))]))
 
 (defn checkpoint [{:keys [course-id checkpoint-id checkpoint-slug] :as query}]
   [ALL #(= (-> % :task str/slugify) checkpoint-slug)])
