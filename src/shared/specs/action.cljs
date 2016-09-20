@@ -4,13 +4,15 @@
             [shared.specs.course :as course]
             [shared.specs.resource :as resource]
             [shared.specs.helpers :as helpers]
-            [shared.specs.base :as base]))
+            [shared.specs.base :as base]
+            [shared.specs.checkpoint :as checkpoint]))
 
 (spec/def ::user (spec/keys :req-un [::base/user-name]))
 
 (spec/def ::action-payload (spec/nilable (spec/or :viewmodel    ::viewmodel/viewmodel
                                                   :credentials  ::base/credentials
                                                   :profile      ::base/profile
+                                                  :checkpoint   ::checkpoint/checkpoint
                                                   :courses      (spec/* ::course/course)
                                                   :resources    ::resource/resources
                                                   :course       ::course/course
@@ -18,7 +20,7 @@
                                                   :new-user     #{:new-user})))
 
 (def action-types #{:go :update :sign-in
-                    :marked-complete :marked-incomplete
+                    :mark-complete :mark-incomplete
                     :sign-out :save :add :fork :create})
 
 (spec/def ::action (spec/cat :action-type (spec/+ action-types)

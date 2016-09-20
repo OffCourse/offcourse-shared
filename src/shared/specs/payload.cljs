@@ -12,9 +12,9 @@
                              :profile     ::base/profile
                              :user        ::base/user
                              :credentials ::base/credentials
+                             :checkpoint  ::checkpoint/checkpoint
                              :resource    ::resource/resource
                              :resources   ::resource/resources
-                             :checkpoint  ::checkpoint/checkpoint
                              :courses     ::course/courses
                              :new-courses (spec/* ::course/new-course)
                              :appstate    ::appstate/appstate
