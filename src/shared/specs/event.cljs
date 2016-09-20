@@ -24,5 +24,6 @@
 (defmethod event-spec :revoked   [_] (spec/tuple ::event-type ::payload))
 (defmethod event-spec :refreshed [_] (spec/tuple ::event-type ::payload))
 (defmethod event-spec :rendered  [_] (spec/tuple ::event-type nil?))
+(defmethod event-spec :failed    [_] (spec/tuple ::event-type any?))
 
 (spec/def ::event (spec/multi-spec event-spec ::event-type))
