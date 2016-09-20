@@ -19,9 +19,7 @@
                                                   :home         #{:home}
                                                   :new-user     #{:new-user})))
 
-(def action-types #{:go :update :sign-in
-                    :mark-complete :mark-incomplete
-                    :sign-out :save :add :fork :create})
+(def action-types #{:go :update :sign-in :sign-out :save :add :fork :create})
 
 (spec/def ::action (spec/cat :action-type (spec/+ action-types)
                              :action-payload (spec/? ::action-payload)))
