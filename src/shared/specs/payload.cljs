@@ -7,11 +7,17 @@
             [shared.specs.checkpoint :as checkpoint]
             [shared.specs.base :as base]))
 
+(spec/def ::resource-url ::base/url)
+(spec/def ::bookmark (spec/keys :req-un [::resource-url]
+                                :opt-un [::course/course-id]))
+
 (spec/def ::payload (spec/or :course      ::course/course
                              :new-course  ::course/new-course
                              :profile     ::base/profile
                              :user        ::base/user
                              :credentials ::base/credentials
+                             :bookmarks   (spec/* ::bookmark)
+                             :bookmark   ::bookmark
                              :checkpoint  ::checkpoint/checkpoint
                              :resource    ::resource/resource
                              :resources   ::resource/resources

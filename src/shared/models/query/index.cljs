@@ -29,6 +29,9 @@
 (defmethod create :user [query]
   (with-meta query {:spec ::specs/query}))
 
+(defmethod create :bookmarks [query]
+  (with-meta query {:spec ::specs/query}))
+
 (defmethod create :resource [{:keys [resource-url course-id] :as query}]
   (with-meta {:resource-url resource-url
               :course-id course-id} {:spec ::specs/query}))

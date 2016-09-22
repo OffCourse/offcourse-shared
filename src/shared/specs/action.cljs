@@ -9,17 +9,23 @@
 
 (spec/def ::user (spec/keys :req-un [::base/user-name]))
 
+(spec/def ::resource-url ::base/url)
+(spec/def ::bookmark (spec/keys :req-un [::resource-url]
+                                :opt-un [::course/course-id]))
+
 (spec/def ::action-payload (spec/nilable (spec/or :viewmodel    ::viewmodel/viewmodel
                                                   :credentials  ::base/credentials
                                                   :profile      ::base/profile
                                                   :checkpoint   ::checkpoint/checkpoint
                                                   :courses      (spec/* ::course/course)
                                                   :resources    ::resource/resources
+                                                  :bookmarks    (spec/* ::bookmark)
+                                                  :bookmark     ::bookmark
                                                   :course       ::course/course
                                                   :home         #{:home}
                                                   :new-user     #{:new-user})))
 
-(def action-types #{:go :update :sign-in :sign-out :save :add :fork :create})
+(def action-types #{:go :update :put :sign-in :sign-out :save :add :fork :create})
 
 (spec/def ::action (spec/cat :action-type (spec/+ action-types)
                              :action-payload (spec/? ::action-payload)))
