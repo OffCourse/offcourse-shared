@@ -1,6 +1,7 @@
 (ns shared.models.action.index
   (:require [shared.protocols.specced :refer [Specced]]
             [shared.specs.core :as specs]
+            [shared.specs.action :as as]
             [cljs.spec :as spec]
             [cljs.spec.test :as stest]
             [shared.protocols.loggable :as log]))
@@ -14,7 +15,8 @@
   (specify action
     Specced
     (-resolve [this]
-      (let [{:keys [action-type action-payload]} (spec/conform (:spec (meta this)) this)]
+      (log/log (.stringify js/JSON (clj->js (spec/explain ::as/action-payload (second this)))))
+      (let [{:keys [action-type action-payload] :as action} (spec/conform (:spec (meta this)) this)]
         [(first action-type) (first action-payload)]))))
 
 (defn create
