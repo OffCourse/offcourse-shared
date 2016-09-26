@@ -17,7 +17,7 @@
 
 (defn create [appstate]
   (-> {:site-title "Offcourse_"
-       :actions action/action-types}
+       :actions    action/action-types}
       (merge appstate)
       map->Appstate
       (with-meta {:spec ::specs/appstate})))

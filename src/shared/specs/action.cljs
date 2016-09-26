@@ -18,9 +18,9 @@
                                                   :profile      ::base/profile
                                                   :checkpoint   ::checkpoint/checkpoint
                                                   :courses      (spec/* ::course/course)
+                                                  :resources    ::resource/resources
                                                   :bookmarks    (spec/* ::bookmark)
                                                   :bookmark     ::bookmark
-                                                  :resources    ::resource/resources
                                                   :course       ::course/course
                                                   :home         #{:home}
                                                   :new-user     #{:new-user})))

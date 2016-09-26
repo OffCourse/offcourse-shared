@@ -16,6 +16,7 @@
 
 (spec/def ::resources (spec/* ::resource))
 
+
 (spec/def ::query (spec/or :collection ::collection
                            :tags ::tags
                            :user ::base/user

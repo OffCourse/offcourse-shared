@@ -10,7 +10,7 @@
 (spec/def ::forked-from (spec/or :course-id ::course-id :root nil))
 (spec/def ::forks (spec/* ::course-id))
 
-(spec/def checkpoints ::checkpoint/new-checkpoints)
+(spec/def ::checkpoints ::checkpoint/checkpoints)
 
 (spec/def ::new-course (spec/keys :req-un [::base/curator
                                            ::goal
@@ -23,8 +23,9 @@
                                        ::goal
                                        ::version
                                        ::revision
-                                       ::checkpoint/checkpoints]
+                                       ::checkpoints]
                               :opt-un [::forks
+                                       ::course-id
                                        ::forked-from]))
 
 
