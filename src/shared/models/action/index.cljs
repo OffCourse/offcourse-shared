@@ -15,7 +15,6 @@
   (specify action
     Specced
     (-resolve [this]
-      (log/log (.stringify js/JSON (clj->js (spec/explain ::as/action-payload (second this)))))
       (let [{:keys [action-type action-payload] :as action} (spec/conform (:spec (meta this)) this)]
         [(first action-type) (first action-payload)]))))
 

@@ -5,7 +5,7 @@
 (spec/def ::resource-url ::base/url)
 
 (spec/def ::content (spec/nilable string?))
-(spec/def ::description string?)
+(spec/def ::description (spec/nilable string?))
 (spec/def ::type string?)
 
 (spec/def ::resource (spec/keys :opt-un [::type ::description ::content]))
