@@ -41,6 +41,10 @@
         (assoc-in [:courses] courses)
         (add fork))))
 
+(defmethod perform [:switch-to :app-mode] [{:keys [app-mode] :as store} [_ new-mode]]
+    (-> store
+        (assoc-in [:app-mode] new-mode)))
+
 (defmethod perform [:update :checkpoint] [store [_ checkpoint]]
   (let [course-id (:course-id (meta checkpoint))
         checkpoint-id (:checkpoint-id checkpoint)

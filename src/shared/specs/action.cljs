@@ -22,10 +22,11 @@
                                                   :bookmarks    (spec/* ::bookmark)
                                                   :bookmark     ::bookmark
                                                   :course       ::course/course
+                                                  :app-mode    #{:view-mode :edit-mode}
                                                   :home         #{:home}
                                                   :new-user     #{:new-user})))
 
-(def action-types #{:go :extract :update :put :sign-in :sign-out :save :add :fork :create})
+(def action-types #{:go :extract :update :put :switch-to :sign-in :sign-out :save :add :fork :create})
 
 (spec/def ::action (spec/cat :action-type (spec/+ action-types)
                              :action-payload (spec/? ::action-payload)))
