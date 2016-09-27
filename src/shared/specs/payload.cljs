@@ -5,16 +5,14 @@
             [shared.specs.viewmodel :as viewmodel]
             [shared.specs.resource :as resource]
             [shared.specs.checkpoint :as checkpoint]
-            [shared.specs.base :as base]))
+            [shared.specs.base :as base]
+            [shared.specs.user :as user]
+            [shared.specs.bookmark :as bookmark]))
 
-(spec/def ::resource-url ::base/url)
-(spec/def ::bookmark (spec/keys :req-un [::resource-url]
-                                :opt-un [::course/course-id]))
+(spec/def ::new-checkpoint (spec/keys :req-un [::checkpoint/task
+                                           ::checkpoint/resource-url]))
 
-(spec/def ::checkpoint (spec/keys :req-un [::checkpoint/task
-                                            ::checkpoint/resource-url]))
-
-(spec/def ::checkpoints (spec/* ::checkpoint))
+(spec/def ::checkpoints (spec/* ::new-checkpoint))
 
 (spec/def ::new-course (spec/keys :req-un [::course/goal
                                            ::course/curator
@@ -26,11 +24,10 @@
                              :new-course  ::new-course
                              :new-courses (spec/* ::new-course)
                              :viewmodel   ::viewmodel/viewmodel
-                             :profile     ::base/profile
-                             :user        ::base/user
-                             :credentials ::base/credentials
+                             :profile     ::user/user
+                             :credentials ::user/credentials
                              :checkpoint  ::checkpoint/checkpoint
                              :resources   (spec/* ::resource/resource)
-                             :bookmarks   (spec/* ::bookmark)
-                             :bookmark    ::bookmark
+                             :bookmarks   (spec/* ::bookmark/bookmark)
+                             :bookmark    ::bookmark/bookmark
                              :appstate    ::appstate/appstate))

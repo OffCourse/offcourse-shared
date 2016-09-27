@@ -5,28 +5,48 @@
             [shared.specs.resource :as resource]
             [shared.specs.helpers :as helpers]
             [shared.specs.base :as base]
-            [shared.specs.checkpoint :as checkpoint]))
+            [shared.specs.bookmark :as bookmark]
+            [shared.specs.checkpoint :as checkpoint]
+            [shared.specs.user :as user]))
 
-(spec/def ::user (spec/keys :req-un [::base/user-name]))
+(spec/def ::app-modes base/valid-modes)
+(spec/def ::action-types base/valid-actions)
 
-(spec/def ::resource-url ::base/url)
-(spec/def ::bookmark (spec/keys :req-un [::resource-url]
-                                :opt-un [::course/course-id]))
+(defmulti  action-spec (fn [[action-type _ :as action]] action-type))
 
-(spec/def ::action-payload (spec/nilable (spec/or :viewmodel    ::viewmodel/viewmodel
-                                                  :credentials  ::base/credentials
-                                                  :profile      ::base/profile
-                                                  :checkpoint   ::checkpoint/checkpoint
-                                                  :courses      (spec/* ::course/course)
-                                                  :resources    ::resource/resources
-                                                  :bookmarks    (spec/* ::bookmark)
-                                                  :bookmark     ::bookmark
-                                                  :course       ::course/course
-                                                  :app-mode    #{:view-mode :edit-mode}
-                                                  :home         #{:home}
-                                                  :new-user     #{:new-user})))
+(defmethod action-spec :create [_]
+  (spec/tuple ::action-types (spec/or :new-user #{:new-user}
+                                      :profile ::user/profile )))
 
-(def action-types #{:go :extract :update :put :switch-to :sign-in :sign-out :save :add :fork :create})
+(defmethod action-spec :update [_]
+  (spec/tuple ::action-types (spec/or :viewmodel ::viewmodel/viewmodel
+                                    :checkpoint ::checkpoint/checkpoint)))
 
-(spec/def ::action (spec/cat :action-type (spec/+ action-types)
-                             :action-payload (spec/? ::action-payload)))
+(defmethod action-spec :save [_]
+  (spec/tuple ::action-types (spec/or :profile ::user/profile)))
+
+
+(defmethod action-spec :sign-in [_]
+  (spec/tuple ::action-types))
+
+(defmethod action-spec :sign-out [_]
+  (spec/tuple ::action-types))
+
+(defmethod action-spec :go [_]
+  (spec/tuple ::action-types (spec/or :home #{:home})))
+
+(defmethod action-spec :switch-to [_]
+  (spec/tuple ::action-types (spec/or :app-mode ::app-modes)))
+
+
+(defmethod action-spec :fork [_]
+  (spec/tuple ::action-types (spec/or :course      ::course/course)))
+
+(defmethod action-spec :add [_]
+  (spec/tuple ::action-types (spec/or  :credentials ::user/credentials
+                                       :profile     ::user/profile
+                                       :resources   ::resource/resources
+                                       :course      ::course/course
+                                       :courses     (spec/* ::course/course))))
+
+(spec/def ::action (spec/multi-spec action-spec ::action-type))

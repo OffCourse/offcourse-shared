@@ -15,8 +15,8 @@
   (specify action
     Specced
     (-resolve [this]
-      (let [{:keys [action-type action-payload] :as action} (spec/conform (:spec (meta this)) this)]
-        [(first action-type) (first action-payload)]))))
+      (let [[action-type action-payload] (spec/conform (:spec (meta this)) this)]
+        [action-type (first action-payload)]))))
 
 (defn create
   "creates a new action"

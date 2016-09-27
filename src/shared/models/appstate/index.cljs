@@ -5,7 +5,7 @@
             [shared.protocols.queryable :refer [Queryable]]
             [shared.models.appstate.missing-data :as md]
             [shared.models.appstate.get :as get]
-            [shared.specs.action :as action]
+            [shared.specs.core :as specs]
             [shared.models.appstate.perform :as perform]))
 
 (defrecord Appstate []
@@ -17,7 +17,7 @@
 
 (defn create [appstate]
   (-> {:site-title "Offcourse_"
-       :actions    action/action-types}
+       :actions    specs/action-types}
       (merge appstate)
       map->Appstate
       (with-meta {:spec ::specs/appstate})))

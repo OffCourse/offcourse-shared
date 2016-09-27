@@ -26,7 +26,7 @@
 (defmethod create :viewmodel [query]
   (with-meta query {:spec ::specs/query}))
 
-(defmethod create :user [query]
+(defmethod create :profile [query]
   (with-meta query {:spec ::specs/query}))
 
 (defmethod create :bookmarks [query]
@@ -36,8 +36,10 @@
   (with-meta query {:spec ::specs/query}))
 
 (defmethod create :bookmark [{:keys [resource-url course-id] :as query}]
-  (with-meta {:resource-url resource-url
-              :course-id course-id} {:spec ::specs/query}))
+  (let [query (if course-id {:resource-url resource-url
+                             :course-id course-id}
+                  {:resource-url resource-url})]
+    (with-meta query {:spec ::specs/query})))
 
 (defmethod create :query [query]
   (with-meta query {:spec ::specs/query}))
