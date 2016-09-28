@@ -54,9 +54,13 @@
          :forks []
          :forked-from nil))
 
+(defn normalize-user [{:keys [curator] :as course}]
+  (assoc course :curator (str/lower-case curator)))
+
 (defn initialize [raw-course]
   (->> raw-course
        create
+       normalize-user
        order-checkpoints
        add-id
        add-meta))

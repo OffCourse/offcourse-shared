@@ -42,11 +42,18 @@
 (defmethod action-spec :fork [_]
   (spec/tuple ::action-types (spec/or :course      ::course/course)))
 
+
 (defmethod action-spec :add [_]
   (spec/tuple ::action-types (spec/or  :credentials ::user/credentials
                                        :profile     ::user/profile
                                        :resources   ::resource/resources
                                        :course      ::course/course
                                        :courses     (spec/* ::course/course))))
+
+
+;; server
+
+(defmethod action-spec :put [_]
+  (spec/tuple ::action-types (spec/or :bookmarks  (spec/* ::bookmark/bookmark))))
 
 (spec/def ::action (spec/multi-spec action-spec ::action-type))
