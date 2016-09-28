@@ -1,9 +1,14 @@
 (ns shared.models.viewmodel.index
   (:require [shared.protocols.convertible :refer [Convertible]]
+            [shared.protocols.queryable :refer [Queryable]]
+            [shared.models.viewmodel.missing-data :as md-impl]
             [shared.models.viewmodel.to-url :refer [to-url]]
             [shared.specs.core :as specs]))
 
+
 (defrecord Viewmodel []
+  Queryable
+  (-missing-data [this query] (md-impl/missing-data this query))
   Convertible
   (-to-url [this routes] (to-url this routes)))
 
@@ -35,4 +40,3 @@
 (defmethod create :home-view []
   (-create {:collection {:collection-type "flags"
                          :collection-name "featured"}}))
-

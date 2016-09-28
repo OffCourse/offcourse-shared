@@ -6,27 +6,16 @@
             [cljs.spec :as spec]
             [shared.specs.core :as specs]
             [shared.protocols.loggable :as log]
-            [shared.protocols.specced :as sp]))
+            [shared.protocols.specced :as sp]
+            [shared.models.bookmark.index :as bookmark]
+            [shared.models.viewmodel.index :as viewmodel]))
 
-;; query to vm
-(defmulti missing-data (fn [state query]
-                         (first (spec/conform ::specs/viewmodel query))))
+(defmulti missing-data (fn [state query] (sp/resolve query)))
 
-(defmethod missing-data :collection-view [state viewmodel]
-  (query/create (:collection viewmodel)))
+(defmethod missing-data :viewmodel [state viewmodel]
+  (qa/missing-data (viewmodel/-create viewmodel) state))
 
-(defmethod missing-data :course-view [state viewmodel]
-  (let [course-query (-> viewmodel :course)
-        course (qa/get state course-query)]
-    (if course
-      (qa/missing-data course state)
-      (query/create course-query))))
-
-(defmethod missing-data :checkpoint-view [state viewmodel]
-  (let [course-query (-> viewmodel :course)
-        course (qa/get state course-query)]
-    (if course
-      (qa/missing-data course state)
-      (query/create course-query))))
-
-(defmethod missing-data :default [state viewmodel] nil)
+(defmethod missing-data :resource [{:keys [resources]} {:keys [resource-url] :as bookmark}]
+  (let [resource-urls (into #{} (map :resource-url resources))]
+    (when-not (contains? resource-urls resource-url)
+      bookmark)))
