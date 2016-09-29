@@ -8,7 +8,6 @@
             [shared.protocols.loggable :as log]
             [cljs.spec :as spec]))
 
-
 (defrecord Viewmodel []
   Queryable
   (-missing-data [this query] (md-impl/missing-data this query))
