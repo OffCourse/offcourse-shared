@@ -6,7 +6,7 @@
 (defn- override [params]
   (specify params
     Convertible
-    (to-url [this routes] (log/log "...."))))
+    (-to-url [this routes] (log/log "...."))))
 
 (defmulti create (fn [handler params] (if params :params :handler)))
 
