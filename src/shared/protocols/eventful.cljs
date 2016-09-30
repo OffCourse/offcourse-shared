@@ -2,7 +2,9 @@
   (:require [cljs.core.async :as async :refer [<! close!]]
             [shared.models.event.index :as event]
             [shared.protocols.loggable :as log]
-            [shared.protocols.specced :as sp])
+            [shared.protocols.specced :as sp]
+            [cljs.spec :as spec]
+            [shared.specs.payload :as specs])
   (:require-macros [cljs.core.async.macros :refer [go-loop]]))
 
 (defprotocol Eventful

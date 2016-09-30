@@ -2,18 +2,24 @@
   (:refer-clojure :exclude [get -reset remove])
   (:require [shared.specs.core :as specs]
             [shared.protocols.queryable :refer [Queryable]]
+            [shared.protocols.convertible :refer [Convertible]]
             [shared.models.course.get :as get-impl]
             [shared.models.course.missing-data :as md-impl]
             [shared.models.checkpoint.index :as checkpoint]
             [shared.protocols.specced :refer [Specced]]
             [cljs.spec :as spec]
             [shared.protocols.loggable :as log]
-            [clojure.string :as str]))
+            [clojure.string :as clj-str]
+            [shared.models.query.index :as query]
+            [cuerdas.core :as str]))
 
 (defrecord Course []
   Queryable
   (-get [this query] (get-impl/get this query))
   (-missing-data [this query] (md-impl/missing-data this query))
+  Convertible
+  (-to-query [{:keys [curator goal]}] (query/create {:curator curator
+                                                     :course-slug (str/slugify goal)}))
   Specced
   (-resolve [this] :courses))
 
@@ -26,7 +32,7 @@
     (assoc course :checkpoints checkpoints)))
 
 (defn fork [{:keys [base-id course-id organization goal] :as course} {:keys [user]}]
-  (let [hash (last (str/split base-id "::"))
+  (let [hash (last (clj-str/split base-id "::"))
         new-id (str organization "::" (:user-name user) "::" hash)]
     (assoc course
            :course-id new-id
@@ -55,7 +61,7 @@
          :forked-from nil))
 
 (defn normalize-user [{:keys [curator] :as course}]
-  (assoc course :curator (str/lower-case curator)))
+  (assoc course :curator (clj-str/lower-case curator)))
 
 (defn initialize [raw-course]
   (->> raw-course

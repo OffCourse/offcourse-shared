@@ -6,11 +6,13 @@
             [shared.protocols.queryable :as qa]
             [shared.protocols.specced :as sp]
             [shared.models.user.index :as user]
-            [shared.protocols.loggable :as log])
+            [shared.protocols.loggable :as log]
+            [cuerdas.core :as str]
+            [shared.protocols.convertible :as cv])
   (:require-macros [com.rpl.specter.macros :refer [select-first setval transform]]))
 
 (defn- add [store item]
-  (if-not (qa/get store (query/create item))
+  (if-not (qa/get store (cv/to-query item))
     (update-in store [(sp/resolve item)] #(conj % item))
     store))
 
