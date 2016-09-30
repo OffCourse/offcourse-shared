@@ -16,3 +16,19 @@
 
 (defn create [vm]
   (with-meta (map->Viewmodel vm) {:spec ::specs/viewmodel}))
+
+(defmulti from-route (fn [params] (sp/resolve params)))
+
+(defmethod from-route :checkpoint-view [params]
+  (create {:course     (select-keys params [:curator :organization :course-slug])
+                     :checkpoint (select-keys params [:checkpoint-slug :checkpoint-id])}))
+
+(defmethod from-route :course-view [params]
+  (create {:course (select-keys params [:curator :organization :course-slug])}))
+
+(defmethod from-route :collection-view [params]
+  (create {:collection (select-keys params [:collection-type :collection-name])}))
+
+(defmethod from-route :home-view [params]
+  (create {:collection {:collection-type "flags"
+                        :collection-name "featured"}}))

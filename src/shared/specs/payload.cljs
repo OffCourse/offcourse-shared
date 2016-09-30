@@ -4,7 +4,7 @@
             [shared.specs.appstate :as appstate]
             [shared.specs.resource :as resource]
             [shared.specs.checkpoint :as checkpoint]
-            [shared.specs.route-params :as route-params]))
+            [shared.specs.route :as route]))
 
 (spec/def ::new-checkpoint (spec/keys :req-un [::checkpoint/task
                                                ::checkpoint/resource-url]))
@@ -16,7 +16,7 @@
                                            ::course/organization
                                            ::checkpoints]))
 
-(spec/def ::payload (spec/or :route-params ::route-params/route-params
+(spec/def ::payload (spec/or :route        ::route/route
                              :new-course   ::new-course
                              :new-courses  (spec/* ::new-course)
                              :resources    (spec/* ::resource/resource)

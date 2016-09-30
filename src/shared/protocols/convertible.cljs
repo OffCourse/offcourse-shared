@@ -9,7 +9,7 @@
   (-to-payload      [this])
   (-to-clj          [this])
   (-to-viewmodel    [this])
-  (-to-route-params [this])
+  (-to-route        [this])
   (-to-url          [this routes] [this course routes]))
 
 (defn to-models
@@ -45,6 +45,6 @@
   "Given the provided route-params, it returns a viewmodel"
   ([this] (-to-viewmodel this)))
 
-(defn to-route-params
+(defn to-route
   "Given the provided viewmodel, it returns the route-params"
   ([this] (-to-viewmodel this)))

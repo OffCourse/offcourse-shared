@@ -11,7 +11,7 @@
             [shared.specs.resource :as resource]
             [shared.specs.helpers :as helpers]
             [shared.specs.user :as user]
-            [shared.specs.route-params :as route-params]
+            [shared.specs.route :as route]
             [shared.specs.bookmark :as bookmark]))
 
 (spec/def ::query ::query/query)
@@ -25,7 +25,7 @@
 (spec/def ::course ::course/course)
 (spec/def ::resource ::resource/resource)
 (spec/def ::bookmark ::bookmark/bookmark)
-(spec/def ::route-params ::route-params/route-params)
+(spec/def ::route ::route/route)
 
 (spec/def ::spec spec/spec?)
 (spec/def ::meta (spec/keys :req-un [::spec]))

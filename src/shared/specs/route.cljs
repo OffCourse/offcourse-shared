@@ -1,4 +1,4 @@
-(ns shared.specs.route-params
+(ns shared.specs.route
   (:require [cljs.spec :as spec]
             [shared.specs.base :as base]
             [shared.specs.course :as course]))
@@ -20,8 +20,8 @@
 (spec/def ::home (spec/keys :req-un [::home-view]))
 (spec/def ::sign-up (spec/keys :req-un [::user]))
 
-(spec/def ::route-params (spec/or :home-view       ::home
-                                  :signup-view     ::sign-up
-                                  :collection-view ::collection
-                                  :checkpoint-view ::checkpoint
-                                  :course-view     ::course))
+(spec/def ::route (spec/or :home-view       ::home
+                           :signup-view     ::sign-up
+                           :collection-view ::collection
+                           :checkpoint-view ::checkpoint
+                           :course-view     ::course))

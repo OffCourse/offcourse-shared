@@ -1,6 +1,7 @@
 (ns shared.models.viewmodel.to-url
   (:require [bidi.bidi :as bidi]
             [cljs.spec :as spec]
+            [shared.models.route.index]
             [shared.specs.core :as specs]
             [shared.protocols.specced :as sp]
             [shared.protocols.loggable :as log]))
