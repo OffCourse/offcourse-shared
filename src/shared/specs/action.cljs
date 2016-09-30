@@ -20,11 +20,7 @@
 
 (defmethod action-spec :update [_]
   (spec/tuple ::action-types (spec/or :viewmodel ::viewmodel/viewmodel
-<<<<<<< HEAD
                                       :checkpoint ::checkpoint/checkpoint)))
-=======
-                                    :checkpoint ::checkpoint/checkpoint)))
->>>>>>> 48b5c34594ec199c5cce1f87419da8ce98b5fd6f
 
 (defmethod action-spec :save [_]
   (spec/tuple ::action-types (spec/or :profile ::user/profile)))
@@ -50,16 +46,9 @@
 (defmethod action-spec :add [_]
   (spec/tuple ::action-types (spec/or  :credentials ::user/credentials
                                        :profile     ::user/profile
-<<<<<<< HEAD
                                        :course      ::course/course
                                        :courses     (spec/* ::course/course)
                                        :resources   ::resource/resources)))
-=======
-                                       :resources   ::resource/resources
-                                       :course      ::course/course
-                                       :courses     (spec/* ::course/course))))
-
->>>>>>> 48b5c34594ec199c5cce1f87419da8ce98b5fd6f
 
 ;; server
 
