@@ -4,15 +4,17 @@
             [shared.specs.course :as course]))
 
 
+(spec/def ::organization (spec/nilable ::base/organization))
+
 (spec/def ::collection (spec/keys :req-un [::base/collection-type
                                            ::base/collection-name]))
 
 (spec/def ::course     (spec/keys :req-un [::base/curator ::base/course-slug]
-                                       :opt-un [::base/organization]))
+                                  :opt-un [::organization]))
 
 (spec/def ::checkpoint (spec/keys :req-un [::base/checkpoint-slug ::base/curator
-                                                ::base/course-slug]
-                                       :opt-un [::base/organization]))
+                                           ::base/course-slug]
+                                  :opt-un [::organization]))
 
 (spec/def ::home-view nil?)
 (spec/def ::user nil?)
