@@ -20,7 +20,3 @@
 
 (defmethod to-route :collection-view [{:keys [collection]}]
   (route/create collection))
-
-(defmethod to-route :default [vm]
-  (sp/resolve vm))
-
