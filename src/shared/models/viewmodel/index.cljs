@@ -2,7 +2,7 @@
   (:require [shared.protocols.convertible :refer [Convertible]]
             [shared.protocols.queryable :refer [Queryable]]
             [shared.models.viewmodel.missing-data :as md-impl]
-            [shared.models.viewmodel.to-url :refer [to-url]]
+            [shared.models.viewmodel.to-route :refer [to-route]]
             [shared.specs.core :as specs]
             [shared.protocols.specced :as sp]
             [shared.protocols.loggable :as log]
@@ -12,7 +12,7 @@
   Queryable
   (-missing-data [this query] (md-impl/missing-data this query))
   Convertible
-  (-to-url [this routes] (to-url this routes)))
+  (-to-route [this] (to-route this)))
 
 (defn create [vm]
   (with-meta (map->Viewmodel vm) {:spec ::specs/viewmodel}))
@@ -21,7 +21,7 @@
 
 (defmethod from-route :checkpoint-view [params]
   (create {:course     (select-keys params [:curator :organization :course-slug])
-                     :checkpoint (select-keys params [:checkpoint-slug :checkpoint-id])}))
+           :checkpoint (select-keys params [:checkpoint-slug :checkpoint-id])}))
 
 (defmethod from-route :course-view [params]
   (create {:course (select-keys params [:curator :organization :course-slug])}))

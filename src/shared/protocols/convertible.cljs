@@ -47,4 +47,4 @@
 
 (defn to-route
   "Given the provided viewmodel, it returns the route-params"
-  ([this] (-to-viewmodel this)))
+  ([this] (-to-route this)))
