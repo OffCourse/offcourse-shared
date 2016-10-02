@@ -7,6 +7,9 @@
 
 (defmulti missing-data (fn [viewmodel _] (sp/resolve viewmodel)))
 
+(defmethod missing-data :signup-view [viewmodel state]
+  false)
+
 (defmethod missing-data :collection-view [viewmodel state]
   (query/create (:collection viewmodel)))
 

@@ -5,7 +5,8 @@
 
 (defmulti to-route (fn [vm] (sp/resolve vm)))
 
-(defmethod to-route :signup-view [_] (route/create {:user nil}))
+(defmethod to-route :signup-view [_]
+  (route/create {:signup-view nil}))
 
 (defmethod to-route :course-view [{:keys [course]}]
   (route/create {:curator         (:curator course)

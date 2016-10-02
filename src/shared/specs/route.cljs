@@ -17,10 +17,10 @@
                                   :opt-un [::organization]))
 
 (spec/def ::home-view nil?)
-(spec/def ::user nil?)
+(spec/def ::signup-view nil?)
 
 (spec/def ::home (spec/keys :req-un [::home-view]))
-(spec/def ::sign-up (spec/keys :req-un [::user]))
+(spec/def ::sign-up (spec/keys :req-un [::signup-view]))
 
 (spec/def ::route (spec/or :home-view       ::home
                            :signup-view     ::sign-up

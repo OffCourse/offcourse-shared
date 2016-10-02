@@ -4,6 +4,7 @@
             [shared.specs.appstate :as appstate]
             [shared.specs.resource :as resource]
             [shared.specs.checkpoint :as checkpoint]
+            [shared.specs.user :as user]
             [shared.specs.route :as route]))
 
 (spec/def ::new-checkpoint (spec/keys :req-un [::checkpoint/task
@@ -20,4 +21,5 @@
                              :new-course   ::new-course
                              :new-courses  (spec/* ::new-course)
                              :resources    (spec/* ::resource/resource)
-                             :appstate     ::appstate/appstate))
+                             :appstate     ::appstate/appstate
+                             :credentials ::user/credentials))

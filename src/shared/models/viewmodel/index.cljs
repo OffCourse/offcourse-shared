@@ -19,6 +19,9 @@
 
 (defmulti from-route (fn [params] (sp/resolve params)))
 
+(defmethod from-route :signup-view []
+  (create {:user {}}))
+
 (defmethod from-route :checkpoint-view [params]
   (create {:course     (select-keys params [:curator :organization :course-slug])
            :checkpoint (select-keys params [:checkpoint-slug :checkpoint-id])}))
