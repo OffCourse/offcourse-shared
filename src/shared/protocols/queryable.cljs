@@ -3,9 +3,16 @@
   (:require [shared.models.query.index :as query]))
 
 (defprotocol Queryable
+  (-fetch   [this query])
   (-get     [this query])
   (-check   [this] [this query])
   (-missing-data [this query]))
+
+
+(defn fetch
+  "Given a query, this command will return the requested data asynchronously
+  from a remote service"
+  [this query] (-fetch this (query/create query)))
 
 (defn get
   "Given a query, this command will return the requested data synchronously

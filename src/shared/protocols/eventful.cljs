@@ -25,7 +25,7 @@
   [{:keys [channels component-name  responses] :as this} [status payload]]
   (let [response (event/create [component-name status payload])]
     (if (sp/valid? response)
-      (async/put! (:output channels) (log/pipe response))
+      (async/put! (:output channels) #_response (log/pipe response))
       (log/error response (sp/errors response)))))
 
 (defn react
