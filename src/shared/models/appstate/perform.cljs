@@ -18,17 +18,17 @@
 
 (defmulti perform (fn [as action] (sp/resolve action)))
 
-(defmethod perform [:update :viewmodel] [state [_ viewmodel]]
-  (-> state (assoc :viewmodel viewmodel)))
+(defmethod perform [:update :viewmodel] [store [_ viewmodel]]
+  (-> store (assoc :viewmodel viewmodel)))
 
-(defmethod perform [:sign-out nil] [state [_ payload]]
-  (dissoc state :user))
+(defmethod perform [:sign-out nil] [store [_ payload]]
+  (dissoc store :user))
 
-(defmethod perform [:add :credentials] [state [_ payload]]
-  (assoc-in state [:user] (user/create payload)))
+(defmethod perform [:add :credentials] [store [_ payload]]
+  (assoc-in store [:user] (user/create payload)))
 
-(defmethod perform [:add :profile] [state [_ payload]]
-  (update-in state [:user] #(merge %1 payload)))
+(defmethod perform [:add :profile] [store [_ payload]]
+  (update-in store [:user] #(merge %1 payload)))
 
 (defmethod perform [:add :courses] [store [_ courses]]
   (reduce add store courses))
@@ -36,16 +36,15 @@
 (defmethod perform [:add :resources] [store [_ resources]]
   (reduce add store resources))
 
+
 (defmethod perform [:fork :course] [{:keys [courses] :as store} [_ course]]
   (let [{:keys [course-id] :as fork} (course/fork course store)
-        courses (transform [(paths/course course) :forks] #(conj % course-id) courses)]
+        store (transform [:courses (paths/course course) :forks] #(conj % course-id) store)]
     (-> store
-        (assoc-in [:courses] courses)
         (add fork))))
 
 (defmethod perform [:switch-to :app-mode] [{:keys [app-mode] :as store} [_ new-mode]]
-    (-> store
-        (assoc-in [:app-mode] new-mode)))
+  (assoc-in store [:app-mode] new-mode))
 
 (defmethod perform [:update :checkpoint] [store [_ checkpoint]]
   (let [course-id (:course-id (meta checkpoint))
