@@ -54,6 +54,7 @@
 
 (defmethod action-spec :put [_]
   (spec/tuple ::action-types (spec/or :bookmarks  (spec/* ::bookmark/bookmark)
+                                      :bookmark  ::bookmark/bookmark
                                       :resources (spec/* map?))))
 
 (defmethod action-spec :extract [_]
