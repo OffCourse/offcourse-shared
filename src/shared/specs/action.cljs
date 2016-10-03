@@ -53,6 +53,10 @@
 ;; server
 
 (defmethod action-spec :put [_]
+  (spec/tuple ::action-types (spec/or :bookmarks  (spec/* ::bookmark/bookmark)
+                                      :resources (spec/* map?))))
+
+(defmethod action-spec :extract [_]
   (spec/tuple ::action-types (spec/or :bookmarks  (spec/* ::bookmark/bookmark))))
 
 (spec/def ::action (spec/multi-spec action-spec ::action-type))
