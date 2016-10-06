@@ -13,7 +13,11 @@
 (spec/def ::resource        (spec/keys :req-un [::resource/resource-url]
                                        :opt-un [::course/course-id]))
 
+(spec/def ::keys            (spec/* int?))
+(spec/def ::bucket-items    (spec/keys :req-un [::keys]))
+
 (spec/def ::query (spec/or :collection ::collection
+                           :bucket-items ::bucket-items
                            :tags       ::tags
                            :user       ::user/user
                            :resource   ::resource

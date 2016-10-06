@@ -25,5 +25,6 @@
                              :resources    (spec/* ::resource/resource)
                              :bookmarks    (spec/* ::bookmark/bookmark)
                              :bookmark     ::bookmark/bookmark
+                             :s3-keys      (spec/* int?)
                              :appstate     ::appstate/appstate
                              :credentials  ::user/credentials))
