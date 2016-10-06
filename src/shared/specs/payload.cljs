@@ -23,6 +23,7 @@
                              :new-courses  (spec/* ::new-course)
                              :resource     ::resource/resource
                              :resources    (spec/* ::resource/resource)
+                             :bookmarks    (spec/* ::bookmark/bookmark)
                              :bookmark     ::bookmark/bookmark
                              :appstate     ::appstate/appstate
                              :credentials  ::user/credentials))

@@ -10,6 +10,7 @@
 (spec/def ::collection-type string?)
 (spec/def ::curator ::user/user-name)
 (spec/def ::site-title string?)
+(spec/def ::timestamp int?)
 
 (spec/def ::collection (spec/keys :req-un [::collection-name ::collection-type]))
 
