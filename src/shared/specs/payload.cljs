@@ -21,10 +21,10 @@
 (spec/def ::payload (spec/or :route        ::route/route
                              :new-course   ::new-course
                              :new-courses  (spec/* ::new-course)
-                             :resource     ::resource/resource
-                             :resources    (spec/* ::resource/resource)
                              :bookmarks    (spec/* ::bookmark/bookmark)
                              :bookmark     ::bookmark/bookmark
+                             :resource     ::resource/resource
+                             :resources    (spec/* ::resource/resource)
                              :s3-keys      (spec/* int?)
                              :appstate     ::appstate/appstate
                              :credentials  ::user/credentials))
