@@ -3,10 +3,10 @@
             [shared.specs.base :as base]))
 
 (defn task-length [str]
-  (>= (count str) 6))
+  (>= (count str) 4))
 
-(spec/def ::task string?)
-(spec/def ::checkpoint-id (spec/and string? #(task-length %)))
+(spec/def ::task (and string? #(task-length %)))
+(spec/def ::checkpoint-id int?)
 
 (spec/def ::complete? boolean?)
 
