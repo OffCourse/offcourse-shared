@@ -2,6 +2,7 @@
   (:refer-clojure :exclude [get -reset remove])
   (:require [shared.specs.core :as specs]
             [shared.protocols.queryable :refer [Queryable]]
+            [com.rpl.specter :refer [ALL]]
             [shared.protocols.convertible :refer [Convertible]]
             [shared.models.course.get :as get-impl]
             [shared.models.course.missing-data :as md-impl]
@@ -11,7 +12,8 @@
             [shared.protocols.loggable :as log]
             [clojure.string :as clj-str]
             [shared.models.query.index :as query]
-            [cuerdas.core :as str]))
+            [cuerdas.core :as str])
+  (:require-macros [com.rpl.specter.macros :refer [setval]]))
 
 (defrecord Course []
   Queryable
@@ -23,6 +25,7 @@
   Specced
   (-resolve [this] :courses))
 
+
 (defn add-checkpoints [{:keys [checkpoints] :as course}]
   (let [checkpoints (map checkpoint/create checkpoints)]
     (assoc course :checkpoints checkpoints)))
@@ -30,6 +33,9 @@
 (defn order-checkpoints [{:keys [checkpoints] :as course}]
   (let [checkpoints (map-indexed #(assoc %2 :checkpoint-id %1) checkpoints)]
     (assoc course :checkpoints checkpoints)))
+
+(defn update-checkpoint [{:keys [checkpoints] :as course} {:keys [checkpoint-id] :as checkpoint}]
+  (setval [:checkpoints ALL #(= (:checkpoint-id %) checkpoint-id)] checkpoint course))
 
 (defn fork [{:keys [base-id course-id organization goal] :as course} {:keys [user]}]
   (let [hash (last (clj-str/split base-id "::"))

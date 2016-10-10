@@ -12,7 +12,7 @@
 (spec/def ::resource (spec/keys :req-un [::resource-url
                                          ::resource-type
                                          ::description
-                                         ::tags
-                                         ::content]))
+                                         ::content]
+                                :opt-un [::tags]))
 
 (spec/def ::resources (spec/* ::resource))
