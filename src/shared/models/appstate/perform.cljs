@@ -33,6 +33,10 @@
 (defmethod perform [:add :courses] [store [_ courses]]
   (reduce add store courses))
 
+(defmethod perform [:update :course] [store [_ course]]
+  (log/log "X" (qa/get store (cv/to-query course)))
+  (setval [:courses (paths/course course)] course store))
+
 (defmethod perform [:add :resources] [store [_ resources]]
   (reduce add store resources))
 

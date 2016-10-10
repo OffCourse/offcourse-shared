@@ -20,8 +20,9 @@
   (-get [this query] (get-impl/get this query))
   (-missing-data [this query] (md-impl/missing-data this query))
   Convertible
-  (-to-query [{:keys [curator goal]}] (query/create {:curator curator
-                                                     :course-slug (str/slugify goal)}))
+  (-to-query [{:keys [course-id curator goal]}] (query/create {:curator curator
+                                                               :course-id course-id
+                                                               :course-slug (str/slugify goal)}))
   Specced
   (-resolve [this] :courses))
 
