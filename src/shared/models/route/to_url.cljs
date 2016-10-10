@@ -11,6 +11,9 @@
 (defmethod to-url :signup-view [this routes]
   (bidi/path-for routes :signup-view))
 
+(defmethod to-url :new-course-view [this routes]
+  (bidi/path-for routes :new-course-view))
+
 (defmethod to-url :course-view [this routes]
   (if (needs-organization? this)
     (bidi/path-for routes

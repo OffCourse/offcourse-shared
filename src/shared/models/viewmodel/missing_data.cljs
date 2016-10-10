@@ -10,6 +10,9 @@
 (defmethod missing-data :signup-view [viewmodel state]
   false)
 
+(defmethod missing-data :new-course-view [viewmodel state]
+  false)
+
 (defmethod missing-data :collection-view [viewmodel state]
   (query/create (:collection viewmodel)))
 

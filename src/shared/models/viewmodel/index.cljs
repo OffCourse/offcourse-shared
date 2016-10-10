@@ -26,6 +26,9 @@
   (create {:course     (select-keys params [:curator :organization :course-slug])
            :checkpoint (select-keys params [:checkpoint-slug :checkpoint-id])}))
 
+(defmethod from-route :new-course-view [params]
+  (create {:course nil}))
+
 (defmethod from-route :course-view [params]
   (create {:course (select-keys params [:curator :organization :course-slug])}))
 
