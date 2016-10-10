@@ -25,6 +25,8 @@
   Specced
   (-resolve [this] :courses))
 
+(defn create-checkpoint [{:keys [checkpoints] :as course}]
+  course)
 
 (defn add-checkpoints [{:keys [checkpoints] :as course}]
   (let [checkpoints (map checkpoint/create checkpoints)]
