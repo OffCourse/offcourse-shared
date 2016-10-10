@@ -26,7 +26,10 @@
   (-resolve [this] :courses))
 
 (defn create-checkpoint [{:keys [checkpoints] :as course}]
-  course)
+  (let [max-id (apply max (map #(:checkpoint-id %) checkpoints))
+        checkpoint (checkpoint/create {:checkpoint-id (inc max-id)})
+        checkpoints (conj checkpoints checkpoint)]
+    (assoc course :checkpoints checkpoints)))
 
 (defn add-checkpoints [{:keys [checkpoints] :as course}]
   (let [checkpoints (map checkpoint/create checkpoints)]
