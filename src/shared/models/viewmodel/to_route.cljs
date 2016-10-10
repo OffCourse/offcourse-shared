@@ -8,6 +8,9 @@
 (defmethod to-route :signup-view [_]
   (route/create {:signup-view nil}))
 
+(defmethod to-route :new-course-view [_]
+  (route/create {:new-course-view nil}))
+
 (defmethod to-route :course-view [{:keys [course]}]
   (route/create {:curator         (:curator course)
                  :course-slug     (:course-slug course)

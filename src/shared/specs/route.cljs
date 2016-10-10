@@ -19,11 +19,15 @@
 (spec/def ::home-view nil?)
 (spec/def ::signup-view nil?)
 
+(spec/def ::new-course-view nil?)
+
 (spec/def ::home (spec/keys :req-un [::home-view]))
 (spec/def ::sign-up (spec/keys :req-un [::signup-view]))
+(spec/def ::new-course (spec/keys :req-un [::new-course-view]))
 
 (spec/def ::route (spec/or :home-view       ::home
                            :signup-view     ::sign-up
+                           :new-course-view ::new-course
                            :collection-view ::collection
                            :checkpoint-view ::checkpoint
                            :course-view     ::course))
