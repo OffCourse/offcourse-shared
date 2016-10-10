@@ -26,7 +26,7 @@
   (-resolve [this] :courses))
 
 (defn create-checkpoint [{:keys [checkpoints] :as course}]
-  (let [max-id (apply max (map #(:checkpoint-id %) checkpoints))
+  (let [max-id (or (apply max (map #(:checkpoint-id %) checkpoints)) 0)
         checkpoint (checkpoint/create {:checkpoint-id (inc max-id)})
         checkpoints (conj checkpoints checkpoint)]
     (assoc course :checkpoints checkpoints)))
@@ -37,6 +37,10 @@
 
 (defn order-checkpoints [{:keys [checkpoints] :as course}]
   (let [checkpoints (map-indexed #(assoc %2 :checkpoint-id %1) checkpoints)]
+    (assoc course :checkpoints checkpoints)))
+
+(defn remove-checkpoint [{:keys [checkpoints] :as course} {:keys [checkpoint-id] :as checkpoint}]
+  (let [checkpoints (filter #(not= (-> % :checkpoint-id) checkpoint-id) checkpoints)]
     (assoc course :checkpoints checkpoints)))
 
 (defn update-checkpoint [{:keys [checkpoints] :as course} {:keys [checkpoint-id] :as checkpoint}]
