@@ -4,7 +4,8 @@
             [shared.specs.viewmodel :as viewmodel]
             [shared.specs.course :as course]
             [shared.specs.resource :as resource]
-            [shared.specs.user :as user]))
+            [shared.specs.user :as user]
+            [shared.specs.github :as github]))
 
 (spec/def ::collection      (spec/keys :req-un [::base/collection-type ::base/collection-name]))
 (spec/def ::course          (spec/keys :req-un [::base/course-slug ::base/curator]))
@@ -16,12 +17,14 @@
 (spec/def ::keys            (spec/* int?))
 (spec/def ::bucket-items    (spec/keys :req-un [::keys]))
 
-(spec/def ::query (spec/or :collection ::collection
+
+(spec/def ::query (spec/or :collection   ::collection
                            :bucket-items ::bucket-items
-                           :tags       ::tags
-                           :user       ::user/user
-                           :resource   ::resource
-                           :resources  (spec/* ::resource)
-                           :viewmodel  ::viewmodel/viewmodel
-                           :checkpoint ::checkpoint
-                           :course     ::course))
+                           :tags         ::tags
+                           :user         ::user/user
+                           :github-repo  ::github/repo
+                           :resource     ::resource
+                           :resources    (spec/* ::resource)
+                           :viewmodel    ::viewmodel/viewmodel
+                           :checkpoint   ::checkpoint
+                           :course       ::course))

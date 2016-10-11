@@ -4,6 +4,7 @@
             [shared.specs.appstate :as appstate]
             [shared.specs.resource :as resource]
             [shared.specs.checkpoint :as checkpoint]
+            [shared.specs.github :as github]
             [shared.specs.user :as user]
             [shared.specs.route :as route]
             [shared.specs.bookmark :as bookmark]))
@@ -25,6 +26,7 @@
                              :bookmark     ::bookmark/bookmark
                              :resource     ::resource/resource
                              :resources    (spec/* ::resource/resource)
+                             :github-courses (spec/* ::github/course)
                              :s3-keys      (spec/* int?)
                              :appstate     ::appstate/appstate
                              :credentials  ::user/credentials))

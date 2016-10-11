@@ -9,7 +9,7 @@
                   [adzerk/boot-reload          "0.4.12"         :scope "test"]
                   [pandeiro/boot-http          "0.7.3"          :scope "test"]
                   [crisptrutski/boot-cljs-test "0.3.0-SNAPSHOT" :scope "test"]
-                  [boot-codox                  "0.9.6"          :scope "test"]
+                  [boot-codox                  "0.10.1"         :scope "test"]
                   [com.cemerick/piggieback     "0.2.2-SNAPSHOT" :scope "test"]
                   [weasel                      "0.7.0"          :scope "test"]
                   [adzerk/bootlaces            "0.1.13"         :scope "test"]
