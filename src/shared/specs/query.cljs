@@ -17,14 +17,15 @@
 (spec/def ::keys            (spec/* int?))
 (spec/def ::bucket-items    (spec/keys :req-un [::keys]))
 
-
-(spec/def ::query (spec/or :collection   ::collection
-                           :bucket-items ::bucket-items
-                           :tags         ::tags
-                           :user         ::user/user
-                           :github-repo  ::github/repo
-                           :resource     ::resource
-                           :resources    (spec/* ::resource)
-                           :viewmodel    ::viewmodel/viewmodel
-                           :checkpoint   ::checkpoint
-                           :course       ::course))
+(spec/def ::query (spec/or :collection     ::collection
+                           :bucket-items   ::bucket-items
+                           :tags           ::tags
+                           :user           ::user/user
+                           :github-courses (spec/* ::github/course)
+                           :github-repos   (spec/* ::github/repo)
+                           :github-repo    ::github/repo
+                           :resource       ::resource
+                           :resources      (spec/* ::resource)
+                           :viewmodel      ::viewmodel/viewmodel
+                           :checkpoint     ::checkpoint
+                           :course         ::course))
