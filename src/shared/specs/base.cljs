@@ -12,7 +12,8 @@
 (spec/def ::site-title string?)
 (spec/def ::timestamp int?)
 
-(spec/def ::collection (spec/keys :req-un [::collection-name ::collection-type]))
+(spec/def ::collection (spec/keys :req-un [::collection-type]
+                                  :opt-un [::collection-name]))
 
 (spec/def ::slug string?)
 (spec/def ::course-slug ::slug)

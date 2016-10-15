@@ -8,4 +8,3 @@
 
 (defn create [query]
   (with-meta query {:spec ::specs/query}))
-

@@ -3,9 +3,11 @@
 (defprotocol Convertible
   "The Convertible protocol allows data structures to be converted to others
   after they are checked against their specification"
-  (-to-model       [this])
+  (-to-model        [this])
   (-to-event        [this])
+  (-to-events       [this])
   (-to-query        [this])
+  (-to-es-query     [this])
   (-to-payload      [this])
   (-to-clj          [this])
   (-to-viewmodel    [this])
@@ -17,6 +19,11 @@
   corresponding model specification"
   [this] (-to-model this))
 
+(defn to-events
+  "Converts an js api event to an offcourse event, if the object meets the
+  corresponding model specification"
+  [this] (-to-events this))
+
 (defn to-event
   "Converts an js api event to an offcourse event, if the object meets the
   corresponding model specification"
@@ -26,6 +33,11 @@
   "Converts an js object to an offcourse query, if the object meets the
   corresponding model specification"
   [this] (-to-query this))
+
+(defn to-es-query
+  "Converts an offcourse query to an elasticsearch query, if the object meets the
+  corresponding model specification"
+  [this] (-to-es-query this))
 
 (defn to-payload
   "Converts an js object to an offcourse query, if the object meets the
