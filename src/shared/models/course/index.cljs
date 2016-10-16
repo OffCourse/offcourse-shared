@@ -33,7 +33,9 @@
     (assoc course :checkpoints checkpoints)))
 
 (defn add-checkpoints [{:keys [checkpoints] :as course}]
-  (let [checkpoints (map checkpoint/create checkpoints)]
+  (let [checkpoints (->> checkpoints
+                         (map #(assoc % :tags []))
+                         (map checkpoint/create))]
     (assoc course :checkpoints checkpoints)))
 
 (defn order-checkpoints [{:keys [checkpoints] :as course}]

@@ -9,6 +9,7 @@
   (-to-query        [this])
   (-to-es-query     [this])
   (-to-payload      [this])
+  (-to-action       [this])
   (-to-clj          [this])
   (-to-viewmodel    [this])
   (-to-route        [this])
@@ -28,6 +29,11 @@
   "Converts an js api event to an offcourse event, if the object meets the
   corresponding model specification"
   [this] (-to-event this))
+
+(defn to-action
+  "Converts an js api action to an offcourse action, if the object meets the
+  corresponding model specification"
+  [this] (-to-action this))
 
 (defn to-query
   "Converts an js object to an offcourse query, if the object meets the
