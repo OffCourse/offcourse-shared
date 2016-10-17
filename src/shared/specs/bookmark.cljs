@@ -3,10 +3,12 @@
             [shared.specs.course :as course]
             [cljs.spec :as spec]
             [shared.specs.user :as user]
-            [shared.specs.base :as base]))
+            [shared.specs.base :as base]
+            [shared.specs.checkpoint :as checkpoint]))
 
+(spec/def ::source (spec/keys :req-un [::course/course-id ::checkpoint/checkpoint-id]))
 
 (spec/def ::bookmark (spec/keys :req-un [::resource/resource-url
                                          ::base/timestamp
-                                         ::course/curator]
-                                :opt-un [::course/course-id]))
+                                         ::base/curator
+                                         ::source]))

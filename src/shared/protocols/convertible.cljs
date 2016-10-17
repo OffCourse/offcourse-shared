@@ -8,12 +8,24 @@
   (-to-events       [this])
   (-to-query        [this])
   (-to-es-query     [this])
+  (-to-bookmark     [this])
+  (-to-bookmarks     [this])
   (-to-payload      [this])
   (-to-action       [this])
   (-to-clj          [this])
   (-to-viewmodel    [this])
   (-to-route        [this])
   (-to-url          [this routes] [this course routes]))
+
+(defn to-bookmark
+  "Converts the given data and offcourse bookmark, if the object meets the
+  corresponding model specification"
+  [this] (-to-bookmark this))
+
+(defn to-bookmarks
+  "Converts the given data to offcourse bookmarks, if the data meets the
+  corresponding model specification"
+  [this] (-to-bookmarks this))
 
 (defn to-model
   "Converts raw data to one or more offcourse models, if the object meets the

@@ -9,19 +9,19 @@
             [shared.specs.route :as route]
             [shared.specs.bookmark :as bookmark]))
 
-(spec/def ::new-checkpoint (spec/keys :req-un [::checkpoint/task
+(spec/def ::raw-checkpoint (spec/keys :req-un [::checkpoint/task
                                                ::checkpoint/resource-url]))
 
-(spec/def ::checkpoints (spec/* ::new-checkpoint))
+(spec/def ::checkpoints (spec/* ::raw-checkpoint))
 
-(spec/def ::new-course (spec/keys :req-un [::course/goal
+(spec/def ::raw-course (spec/keys :req-un [::course/goal
                                            ::course/curator
-                                           ::course/organization
                                            ::checkpoints]))
 
 (spec/def ::payload (spec/or :route        ::route/route
-                             :new-course   ::new-course
-                             :new-courses  (spec/* ::new-course)
+                             :courses      (spec/coll-of ::course/course)
+                             :raw-course   ::raw-course
+                             :raw-courses  (spec/* ::raw-course)
                              :bookmarks    (spec/* ::bookmark/bookmark)
                              :bookmark     ::bookmark/bookmark
                              :resource     ::resource/resource

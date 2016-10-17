@@ -18,10 +18,6 @@
 
 (spec/def ::checkpoints ::checkpoint/checkpoints)
 
-(spec/def ::new-course (spec/keys :req-un [::base/curator
-                                           ::goal
-                                           ::checkpoints]))
-
 (spec/def ::course (spec/keys :req-un [::course-id
                                        ::base-id
                                        ::base/curator
@@ -33,6 +29,5 @@
                               :opt-un [::forks
                                        ::course-id
                                        ::forked-from]))
-
 
 (spec/def ::courses (spec/* ::course))
