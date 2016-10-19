@@ -1,5 +1,5 @@
 (ns shared.models.appstate.get
-  (:refer-clojure :exclude [get -reset remove])
+  (:refer-clojure :exclude [get])
   (:require [shared.models.appstate.paths :as paths]
             [shared.protocols.specced :as sp]
             [shared.protocols.loggable :as log])

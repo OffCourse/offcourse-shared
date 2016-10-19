@@ -13,9 +13,15 @@
   (-to-payload      [this])
   (-to-action       [this])
   (-to-clj          [this])
+  (-to-credentials   [this])
   (-to-viewmodel    [this])
   (-to-route        [this])
   (-to-url          [this routes] [this course routes]))
+
+(defn to-credentials
+  "Converts the given data to an auth-token, if the object meets the
+  corresponding model specification"
+  [this] (-to-credentials this))
 
 (defn to-bookmark
   "Converts the given data and offcourse bookmark, if the object meets the

@@ -32,7 +32,7 @@
 (spec/def ::user (spec/keys :req-un [::user/user-name]))
 
 (spec/def ::single-or-multiple? (spec/or :single map?
-                                         :multiple (spec/* map?)))
+                                         :multiple (spec/coll-of map?)))
 
 (spec/def ::credentials ::user/credentials)
 

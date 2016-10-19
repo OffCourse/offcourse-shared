@@ -10,8 +10,7 @@
 (spec/def ::course          (spec/keys :req-un [::base/course-slug ::base/curator]))
 (spec/def ::checkpoint      (spec/keys :req-un [::base/checkpoint-slug]))
 (spec/def ::tags            (spec/keys :req-un [::base/tags]))
-(spec/def ::resource        (spec/keys :req-un [::resource/resource-url]
-                                       :opt-un [::course/course-id]))
+(spec/def ::resource        (spec/keys :req-un [::resource/resource-url]))
 
 (spec/def ::keys            (spec/* int?))
 (spec/def ::bucket-items    (spec/keys :req-un [::keys]))

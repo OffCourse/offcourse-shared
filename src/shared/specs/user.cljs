@@ -10,7 +10,8 @@
 (spec/def ::auth-token (spec/nilable string?))
 (spec/def ::auth-profile map?)
 
-(spec/def ::credentials (spec/keys :req-un [::auth-token ::auth-profile]))
+(spec/def ::credentials (spec/keys :req-un  [::auth-token]
+                                   :opt-un  [::auth-profile]))
 
 (spec/def ::user (spec/keys :req-un [::auth-token ::logged-in-at]
                             :opt-un [::user-name]))
