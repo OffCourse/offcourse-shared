@@ -17,6 +17,7 @@
 
 (spec/def ::query (spec/or :collection     ::base/collection
                            :bucket-items   ::bucket-items
+                           :auth-id        (spec/keys :req-un [::auth-id])
                            :tags           ::tags
                            :user           ::user/user
                            :github-courses (spec/* ::github/course)
