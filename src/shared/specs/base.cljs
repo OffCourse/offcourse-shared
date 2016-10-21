@@ -20,7 +20,7 @@
 (spec/def ::checkpoint-slug ::slug)
 (spec/def ::organization string?)
 
-(def valid-actions #{:go :extract :check :update :put :import :filter :switch-to :transform
+(def valid-actions #{:go :extract :verify :update :put :import :filter :switch-to :transform
                      :sign-in :sign-out :save :add :fork :create})
 
 (def valid-modes #{:view-mode :edit-mode})
