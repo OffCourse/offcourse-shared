@@ -2,8 +2,7 @@
   (:require [cljs.spec :as spec]
             [shared.specs.base :as base]))
 
-(defn task-length [str]
-  (>= (count str) 4))
+(defn task-length [str] (>= (count str) 4))
 
 (spec/def ::task (and string? #(task-length %)))
 (spec/def ::checkpoint-id int?)

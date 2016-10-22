@@ -4,8 +4,7 @@
             [shared.specs.base :as base]
             [shared.protocols.loggable :as log]))
 
-(defn goal-length [str]
-  (>= (count str) 8))
+(defn goal-length [str] (>= (count str) 8))
 
 (spec/def ::course-id string?)
 
