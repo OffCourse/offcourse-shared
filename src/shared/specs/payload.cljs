@@ -18,9 +18,12 @@
                                            ::course/curator
                                            ::checkpoints]))
 
+(spec/def ::raw-user (spec/keys :req-un [::user/user-name]))
+
 (spec/def ::payload (spec/or :route        ::route/route
                              :courses      (spec/coll-of ::course/course)
                              :raw-course   ::raw-course
+                             :raw-users    (spec/coll-of ::raw-user)
                              :raw-courses  (spec/* ::raw-course)
                              :bookmarks    (spec/* ::bookmark/bookmark)
                              :bookmark     ::bookmark/bookmark
