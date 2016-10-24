@@ -23,6 +23,4 @@
 (def valid-actions #{:go :extract :verify :update :put :import :filter :switch-to :transform
                      :sign-in :sign-out :save :add :fork :create})
 
-(def valid-modes #{:view-mode :edit-mode})
-
-
+(def valid-modes #{:view-mode :edit-mode :auth :new-user :edit-profile :view-profile})
