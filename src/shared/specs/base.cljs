@@ -21,7 +21,7 @@
 (spec/def ::organization string?)
 
 (def valid-actions #{:go :extract :verify :update :put :import :filter :switch-to :transform
-                     :sign-in :sign-out :save :add :fork :create})
+                     :sign-in :sign-up :sign-out :save :add :fork :create})
 
 (def valid-modes #{:view-mode :edit-mode})
 

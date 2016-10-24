@@ -22,5 +22,5 @@
   "creates a new action"
   [action]
   (-> action
-      (with-meta {:spec ::specs/action})
+      (with-meta (merge (meta action) {:spec ::specs/action}))
       override))
