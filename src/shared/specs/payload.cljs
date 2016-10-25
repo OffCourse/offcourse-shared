@@ -7,6 +7,7 @@
             [shared.specs.github :as github]
             [shared.specs.user :as user]
             [shared.specs.route :as route]
+            [shared.specs.aws :as aws]
             [shared.specs.bookmark :as bookmark]))
 
 (spec/def ::raw-checkpoint (spec/keys :req-un [::checkpoint/task
@@ -20,16 +21,20 @@
 
 (spec/def ::raw-user (spec/keys :req-un [::user/user-name]))
 
+(spec/def ::raw-profile (spec/keys :req-un [::user/user-name]))
+
 (spec/def ::payload (spec/or :route        ::route/route
                              :courses      (spec/coll-of ::course/course)
                              :raw-course   ::raw-course
                              :raw-users    (spec/coll-of ::raw-user)
                              :raw-courses  (spec/* ::raw-course)
+                             :raw-profiles (spec/coll-of ::raw-profile)
                              :bookmarks    (spec/* ::bookmark/bookmark)
                              :bookmark     ::bookmark/bookmark
                              :resource     ::resource/resource
                              :resources    (spec/* ::resource/resource)
                              :github-courses (spec/* ::github/course)
                              :s3-keys      (spec/* int?)
+                             :dynamodb-events (spec/coll-of ::aws/dynamodb-event)
                              :appstate     ::appstate/appstate
                              :credentials  ::user/credentials))
