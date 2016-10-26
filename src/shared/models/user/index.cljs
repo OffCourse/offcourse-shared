@@ -15,4 +15,4 @@
                :website blog)
         (assoc :logged-in-at (.now js/Date))
         map->User
-        (with-meta {:spec ::specs/user}))))
+        (with-meta {} #_{:spec ::specs/user}))))

@@ -9,10 +9,9 @@
             [shared.specs.appstate :as appstate]
             [shared.specs.course :as course]
             [shared.specs.resource :as resource]
-            [shared.specs.helpers :as helpers]
-            [shared.specs.user :as user]
             [shared.specs.route :as route]
-            [shared.specs.bookmark :as bookmark]))
+            [shared.specs.bookmark :as bookmark]
+            [shared.specs.auth :as auth]))
 
 (spec/def ::query ::query/query)
 (spec/def ::payload ::payload/payload)
@@ -29,11 +28,11 @@
 
 (spec/def ::spec spec/spec?)
 (spec/def ::meta (spec/keys :req-un [::spec]))
-(spec/def ::user (spec/keys :req-un [::user/user-name]))
+(spec/def ::user (spec/keys :req-un [::base/user-name]))
 
 (spec/def ::single-or-multiple? (spec/or :single map?
                                          :multiple (spec/coll-of map?)))
 
-(spec/def ::credentials ::user/credentials)
+(spec/def ::credentials ::auth/credentials)
 
-(def action-types base/valid-actions)
+(def action-types action/types)

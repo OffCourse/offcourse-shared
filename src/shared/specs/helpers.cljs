@@ -11,5 +11,7 @@
 (defn one? [item]
   (= (one-or-many? item) :one))
 
+(defn min-length [str min] (>= (count str) min))
+
 (defn many? [item]
   (= (one-or-many? item) :many))

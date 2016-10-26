@@ -5,36 +5,24 @@
             [shared.specs.resource :as resource]
             [shared.specs.checkpoint :as checkpoint]
             [shared.specs.github :as github]
-            [shared.specs.user :as user]
             [shared.specs.route :as route]
             [shared.specs.aws :as aws]
-            [shared.specs.bookmark :as bookmark]))
+            [shared.specs.raw :as raw]
+            [shared.specs.bookmark :as bookmark]
+            [shared.specs.auth :as auth]))
 
-(spec/def ::raw-checkpoint (spec/keys :req-un [::checkpoint/task
-                                               ::checkpoint/resource-url]))
-
-(spec/def ::checkpoints (spec/* ::raw-checkpoint))
-
-(spec/def ::raw-course (spec/keys :req-un [::course/goal
-                                           ::course/curator
-                                           ::checkpoints]))
-
-(spec/def ::raw-user (spec/keys :req-un [::user/user-name]))
-
-(spec/def ::raw-profile (spec/keys :req-un [::user/user-name]))
-
-(spec/def ::payload (spec/or :route        ::route/route
-                             :courses      (spec/coll-of ::course/course)
-                             :raw-course   ::raw-course
-                             :raw-users    (spec/coll-of ::raw-user)
-                             :raw-courses  (spec/* ::raw-course)
-                             :raw-profiles (spec/coll-of ::raw-profile)
-                             :bookmarks    (spec/* ::bookmark/bookmark)
-                             :bookmark     ::bookmark/bookmark
-                             :resource     ::resource/resource
-                             :resources    (spec/* ::resource/resource)
-                             :github-courses (spec/* ::github/course)
-                             :s3-keys      (spec/* int?)
-                             :dynamodb-events (spec/coll-of ::aws/dynamodb-event)
-                             :appstate     ::appstate/appstate
-                             :credentials  ::user/credentials))
+(spec/def ::payload (spec/or :route           ::route/route
+                             :raw-course      ::raw/course
+                             :bookmark        ::bookmark/bookmark
+                             :resource        ::resource/resource
+                             :appstate        ::appstate/appstate
+                             :credentials     ::auth/credentials
+                             :raw-courses     (spec/coll-of ::raw/course)
+                             :courses         (spec/coll-of ::course/course)
+                             :raw-profiles    (spec/coll-of ::auth/auth-profile)
+                             :raw-users       (spec/coll-of ::raw/user)
+                             :bookmarks       (spec/coll-of ::bookmark/bookmark)
+                             :resources       (spec/coll-of ::resource/resource)
+                             :github-courses  (spec/coll-of ::github/course)
+                             :s3-keys         (spec/coll-of int?)
+                             :dynamodb-events (spec/coll-of ::aws/dynamodb-event)))

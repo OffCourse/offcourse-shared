@@ -16,3 +16,5 @@
                                 :opt-un [::tags]))
 
 (spec/def ::resources (spec/* ::resource))
+
+(spec/def ::query     (spec/keys :req-un [::resource-url]))

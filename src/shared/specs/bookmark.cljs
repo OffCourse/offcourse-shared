@@ -2,7 +2,6 @@
   (:require [shared.specs.resource :as resource]
             [shared.specs.course :as course]
             [cljs.spec :as spec]
-            [shared.specs.user :as user]
             [shared.specs.base :as base]
             [shared.specs.checkpoint :as checkpoint]))
 
@@ -10,5 +9,5 @@
 
 (spec/def ::bookmark (spec/keys :req-un [::resource/resource-url
                                          ::base/timestamp
-                                         ::base/curator
+                                         ::course/curator
                                          ::source]))

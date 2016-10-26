@@ -4,27 +4,25 @@
             [shared.specs.viewmodel :as viewmodel]
             [shared.specs.course :as course]
             [shared.specs.resource :as resource]
-            [shared.specs.user :as user]
-            [shared.specs.github :as github]))
+            [shared.specs.github :as github]
+            [shared.specs.identity :as identity]
+            [shared.specs.collection :as collection]
+            [shared.specs.checkpoint :as checkpoint]
+            [shared.specs.aws :as aws]
+            [shared.models.profile.index :as profile]))
 
-(spec/def ::course          (spec/keys :req-un [::base/course-slug ::base/curator]))
-(spec/def ::checkpoint      (spec/keys :req-un [::base/checkpoint-slug]))
-(spec/def ::tags            (spec/keys :req-un [::base/tags]))
-(spec/def ::resource        (spec/keys :req-un [::resource/resource-url]))
+(spec/def ::tags #{:all})
 
-(spec/def ::keys            (spec/* int?))
-(spec/def ::bucket-items    (spec/keys :req-un [::keys]))
-
-(spec/def ::query (spec/or :collection     ::base/collection
-                           :bucket-items   ::bucket-items
-                           :auth-id        (spec/keys :req-un [::auth-id])
+(spec/def ::query (spec/or :collection     ::collection/query
+                           :bucket-items   ::aws/bucket-items
                            :tags           ::tags
-                           :user           ::user/user
-                           :github-courses (spec/* ::github/course)
-                           :github-repos   (spec/* ::github/repo)
                            :github-repo    ::github/repo
-                           :resource       ::resource
-                           :resources      (spec/* ::resource)
+                           :resource       ::resource/query
                            :viewmodel      ::viewmodel/viewmodel
-                           :checkpoint     ::checkpoint
-                           :course         ::course))
+                           :checkpoint     ::checkpoint/query
+                           :course         ::course/query
+                           :identity       ::identity/query
+                           :profile        ::profile/profile
+                           :resources      (spec/coll-of ::resource/query)
+                           :github-courses (spec/coll-of ::github/course)
+                           :github-repos   (spec/coll-of ::github/repo)))

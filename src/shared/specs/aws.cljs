@@ -35,3 +35,6 @@
                        :auth   ::auth-event
                        :api     ::api-event
                        :stream ::stream-event))
+
+(spec/def ::keys            (spec/* int?))
+(spec/def ::bucket-items    (spec/keys :req-un [::keys]))

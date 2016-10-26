@@ -1,12 +1,8 @@
 (ns shared.specs.event
   (:require [cljs.spec :as spec]
-            [shared.specs.viewmodel :as viewmodel]
             [shared.specs.payload :as payload]
             [shared.specs.query :as query]
-            [shared.specs.helpers :as helpers]
-            [shared.specs.action :as action]
-            [shared.specs.base :as base]
-            [shared.protocols.loggable :as log]))
+            [shared.specs.action :as action]))
 
 (spec/def ::event-type keyword?)
 

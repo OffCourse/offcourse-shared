@@ -2,31 +2,28 @@
   (:require [cljs.spec :as spec]
             [shared.specs.checkpoint :as checkpoint]
             [shared.specs.base :as base]
-            [shared.protocols.loggable :as log]))
-
-(defn goal-length [str] (>= (count str) 8))
+            [shared.protocols.loggable :as log]
+            [shared.specs.helpers :as helpers]))
 
 (spec/def ::course-id string?)
-
-(spec/def ::goal (spec/and string? #(goal-length %)))
-
+(spec/def ::course-slug ::base/slug)
+(spec/def ::goal (spec/and string? #(helpers/min-length % 4)))
 (spec/def ::version (spec/* int?))
 (spec/def ::revision int?)
-(spec/def ::forked-from (spec/or :course-id ::course-id :root nil))
+(spec/def ::forked-from (spec/nilable ::course-id))
 (spec/def ::forks (spec/* ::course-id))
-
-(spec/def ::checkpoints ::checkpoint/checkpoints)
+(spec/def ::curator ::base/user-name)
+(spec/def ::checkpoints (spec/* ::checkpoint/checkpoint))
 
 (spec/def ::course (spec/keys :req-un [::course-id
                                        ::base-id
-                                       ::base/curator
+                                       ::curator
                                        ::base/flags
                                        ::goal
                                        ::version
                                        ::revision
-                                       ::checkpoints]
-                              :opt-un [::forks
-                                       ::course-id
+                                       ::checkpoints
+                                       ::forks
                                        ::forked-from]))
 
-(spec/def ::courses (spec/* ::course))
+(spec/def ::query       (spec/keys :req-un [::base/course-slug ::base/curator]))
