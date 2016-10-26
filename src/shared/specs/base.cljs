@@ -12,4 +12,4 @@
 (spec/def ::slug string?)
 (spec/def ::organization string?)
 
-(def valid-modes #{:view-mode :edit-mode})
+(def valid-modes #{:view-mode :edit-mode :auth :new-user :edit-profile :view-profile})
