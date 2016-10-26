@@ -9,13 +9,14 @@
             [shared.specs.collection :as collection]
             [shared.specs.checkpoint :as checkpoint]
             [shared.specs.aws :as aws]
-            [shared.models.profile.index :as profile]))
+            [shared.specs.profile :as profile]))
 
 (spec/def ::tags #{:all})
+(spec/def ::tags-query (spec/keys :req-un [::tags]))
 
 (spec/def ::query (spec/or :collection     ::collection/query
                            :bucket-items   ::aws/bucket-items
-                           :tags           ::tags
+                           :tags           ::tags-query
                            :github-repo    ::github/repo
                            :resource       ::resource/query
                            :viewmodel      ::viewmodel/viewmodel

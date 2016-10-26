@@ -9,7 +9,8 @@
             [shared.protocols.loggable :as log])
   (:require-macros [com.rpl.specter.macros :refer [select-first]]))
 
-(defmulti get (fn [_ query] (sp/resolve query)))
+(defmulti get (fn [_ query]
+                (sp/resolve query)))
 
 (defmethod get :tags [course _]
   (->> course

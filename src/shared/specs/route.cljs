@@ -5,12 +5,14 @@
             [shared.specs.course :as course]
             [shared.specs.checkpoint :as checkpoint]))
 
+(spec/def ::organization (spec/nilable ::base/organization))
+
 (spec/def ::course     (spec/keys :req-un [::base/curator ::course/course-slug]
-                                  :opt-un [::base/organization]))
+                                  :opt-un [::organization]))
 
 (spec/def ::checkpoint (spec/keys :req-un [::checkpoint/checkpoint-slug ::base/curator
                                            ::course/course-slug]
-                                  :opt-un [::base/organization]))
+                                  :opt-un [::organization]))
 
 (spec/def ::home-view nil?)
 (spec/def ::signup-view nil?)

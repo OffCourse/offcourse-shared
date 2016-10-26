@@ -4,4 +4,4 @@
             [shared.specs.base :as base]))
 
 (spec/def ::identity   (spec/keys :req-un [::base/user-name ::auth/auth-id]))
-(spec/def ::query      (spec/keys :opt-un [::base/user-name ::auth/auth-id]))
+(spec/def ::query      (spec/keys :req-un [::auth/auth-id]))

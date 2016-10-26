@@ -6,7 +6,8 @@
 (defn needs-organization? [{:keys [organization] :as this}]
   (and organization (not (= organization "offcourse"))))
 
-(defmulti to-url (fn [this routes] (sp/resolve this)))
+(defmulti to-url (fn [this routes]
+                   (sp/resolve this)))
 
 (defmethod to-url :signup-view [this routes]
   (bidi/path-for routes :signup-view))

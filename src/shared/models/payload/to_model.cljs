@@ -16,10 +16,10 @@
 (defmethod to-model :courses [payload]
   (map co/create payload))
 
-(defmethod to-model :new-courses [payload]
+(defmethod to-model :raw-courses [payload]
   (map co/initialize payload))
 
-(defmethod to-model :new-course [payload]
+(defmethod to-model :raw-course [payload]
   (co/initialize payload))
 
 (defmethod to-model :course [payload]
