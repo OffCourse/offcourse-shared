@@ -6,4 +6,4 @@
 (spec/def ::action (spec/multi-spec action-spec :action-type))
 
 (def types #{:go :extract :verify :update :put :import :filter :split :switch-to
-             :transform :sign-in :sign-up :sign-out :save :add :fork :create})
+             :transform :authenticate :sign-in :sign-up :sign-out :save :add :fork :create})

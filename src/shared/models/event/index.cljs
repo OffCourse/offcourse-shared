@@ -14,5 +14,6 @@
   (-> [(keyword type) payload]
       (with-meta {:spec ::specs/event
                   :source source
+                  :credentials (-> payload meta :credentials)
                   :timestamp (.now js/Date)})
       override))

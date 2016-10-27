@@ -12,18 +12,16 @@
   and respond to events"
   (-listen [this])
   (-mute [this])
-  (-send [this event])
   (-react [this event])
   (-respond [this event]))
 
-(defn send
-  "Sends an event to a remote endpoint (async)"
-  [this event] (-send this (event/create event)))
 
 (defn respond
   "Puts an event on the output channel of a component"
-  [{:keys [channels component-name  responses] :as this} [status payload]]
-  (let [response (event/create [component-name status payload])]
+  [{:keys [channels component-name state responses] :as this} [status payload]]
+  (let [credentials (when state (select-keys (:user @state) [:auth-token]))
+        payload     (with-meta payload (merge (meta payload) {:credentials credentials}))
+        response    (event/create [component-name status payload])]
     (if (sp/valid? response)
       (async/put! (:output channels) #_response (log/pipe response))
       (log/error response (sp/errors response)))))

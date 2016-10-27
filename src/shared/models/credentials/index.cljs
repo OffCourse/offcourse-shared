@@ -3,8 +3,7 @@
 
 (defrecord Credentials [auth-token])
 
-(defn create [token profile]
-  (-> {:auth-token token
-       :auth-profile profile}
+(defn create [config]
+  (-> config
       map->Credentials
       (with-meta {:spec ::specs/credentials})))
