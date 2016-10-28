@@ -21,4 +21,6 @@
 (defmethod event-spec :rendered  [_] (spec/tuple ::event-type nil?))
 (defmethod event-spec :failed    [_] (spec/tuple ::event-type any?))
 
+(defmethod event-spec :signed-in [_] (spec/tuple ::event-type ::payload))
+
 (spec/def ::event (spec/multi-spec event-spec ::event-type))

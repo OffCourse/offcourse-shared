@@ -19,7 +19,7 @@
 (defn respond
   "Puts an event on the output channel of a component"
   [{:keys [channels component-name state responses] :as this} [status payload]]
-  (let [credentials (when state (select-keys (:user @state) [:auth-token]))
+  (let [credentials (when state (-> @state :user :credentials))
         payload     (with-meta payload (merge (meta payload) {:credentials credentials}))
         response    (event/create [component-name status payload])]
     (if (sp/valid? response)

@@ -9,13 +9,15 @@
             [shared.specs.aws :as aws]
             [shared.specs.raw :as raw]
             [shared.specs.bookmark :as bookmark]
-            [shared.specs.auth :as auth]))
+            [shared.specs.auth :as auth]
+            [shared.specs.identity :as identity]))
 
 (spec/def ::payload (spec/or :route           ::route/route
                              :raw-course      ::raw/course
                              :bookmark        ::bookmark/bookmark
                              :resource        ::resource/resource
                              :appstate        ::appstate/appstate
+                             :identity        ::identity/identity
                              :credentials     ::auth/credentials
                              :raw-courses     (spec/coll-of ::raw/course)
                              :courses         (spec/coll-of ::course/course)
