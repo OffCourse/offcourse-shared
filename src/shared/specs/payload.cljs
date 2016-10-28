@@ -10,7 +10,8 @@
             [shared.specs.raw :as raw]
             [shared.specs.bookmark :as bookmark]
             [shared.specs.auth :as auth]
-            [shared.specs.identity :as identity]))
+            [shared.specs.identity :as identity]
+            [shared.specs.profile :as profile]))
 
 (spec/def ::payload (spec/or :route           ::route/route
                              :raw-course      ::raw/course
@@ -26,5 +27,6 @@
                              :bookmarks       (spec/coll-of ::bookmark/bookmark)
                              :resources       (spec/coll-of ::resource/resource)
                              :github-courses  (spec/coll-of ::github/course)
+                             :portraits       (spec/coll-of ::profile/portrait)
                              :s3-keys         (spec/coll-of int?)
                              :dynamodb-events (spec/coll-of ::aws/dynamodb-event)))
