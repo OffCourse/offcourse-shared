@@ -27,7 +27,8 @@
 (defmethod perform [:add :credentials] [store [_ payload]]
   (assoc-in store [:user :credentials] (select-keys payload [:auth-token])))
 
-(defmethod perform [:add :profile] [store [_ payload]]
+
+(defmethod perform [:add :identity] [store [_ payload]]
   (update-in store [:user] #(merge %1 payload)))
 
 (defmethod perform [:add :courses] [store [_ courses]]
