@@ -17,12 +17,13 @@
 
 (spec/def ::course (spec/keys :req-un [::course-id
                                        ::base-id
+                                       ::base/organization
                                        ::curator
-                                       ::base/flags
                                        ::goal
                                        ::version
                                        ::revision
-                                       ::checkpoints
+                                       ::checkpoints]
+                              :opt-un [::base/flags
                                        ::forks
                                        ::forked-from]))
 

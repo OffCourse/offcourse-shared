@@ -5,9 +5,9 @@
             [shared.specs.base :as base]
             [shared.specs.checkpoint :as checkpoint]))
 
-(spec/def ::source (spec/keys :req-un [::course/course-id ::checkpoint/checkpoint-id]))
+(spec/def ::offcourse-id string?)
 
 (spec/def ::bookmark (spec/keys :req-un [::resource/resource-url
                                          ::base/timestamp
                                          ::course/curator
-                                         ::source]))
+                                         ::offcourse-id]))

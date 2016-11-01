@@ -20,14 +20,14 @@
   (-get [this query] (get-impl/get this query))
   (-missing-data [this query] (md-impl/missing-data this query))
   Convertible
-  (-to-bookmarks [{:keys [course-id curator checkpoints] :as this}]
+  (-to-bookmarks [{:keys [course-id revision organization curator checkpoints] :as this}]
     (map (fn [{:keys [resource-url checkpoint-id]}] {:resource-url resource-url
-                                                     :curator curator
-                                                     :timestamp (.now js/Date)
-                                                     :source {:checkpoint-id checkpoint-id
-                                                              :course-id course-id}}) checkpoints))
-  (-to-query [{:keys [course-id curator goal]}] (query/create {:curator curator
-                                                               :course-id course-id
+                                                     :curator      curator
+                                                     :timestamp    (.now js/Date)
+                                                     :offcourse-id (str course-id "::" revision "::" checkpoint-id)})
+         checkpoints))
+  (-to-query [{:keys [course-id curator goal]}] (query/create {:curator     curator
+                                                               :course-id   course-id
                                                                :course-slug (str/slugify goal)}))
   Specced
   (-resolve [this] :courses))
