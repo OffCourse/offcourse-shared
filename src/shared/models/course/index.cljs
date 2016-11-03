@@ -55,13 +55,19 @@
 (defn update-checkpoint [{:keys [checkpoints] :as course} {:keys [checkpoint-id] :as checkpoint}]
   (setval [:checkpoints ALL #(= (:checkpoint-id %) checkpoint-id)] checkpoint course))
 
-(defn fork [{:keys [base-id course-id organization goal] :as course} {:keys [user]}]
-  (let [hash (last (clj-str/split base-id "::"))
-        new-id (str organization "::" (:user-name user) "::" hash)]
-    (assoc course
-           :course-id new-id
-           :forked-from course-id
-           :curator (:user-name user))))
+(defn fork [{:keys [base-id curator course-id repository goal] :as course} {:keys [user-name]}]
+  (when (not= user-name curator)
+    (let [hash (last (clj-str/split base-id "::"))
+          new-id (str repository "::" user-name "::" hash)
+          fork   (assoc course
+                        :course-id new-id
+                        :revision 1
+                        :forked-from course-id
+                        :curator user-name)
+          original (-> course
+                       (update :forks conj (:course-id fork))
+                       (update :revision inc))]
+      {:original original :fork fork})))
 
 (defn create [raw-course]
   (-> raw-course
@@ -69,9 +75,9 @@
       add-checkpoints
       (with-meta {:spec ::specs/course})))
 
-(defn add-id [{:keys [organization curator] :as course}]
+(defn add-id [{:keys [repository curator] :as course}]
   (let [hash (hash course)
-        id (str organization "::" curator "::" hash)]
+        id (str repository "::" curator "::" hash)]
     (assoc course
            :base-id id
            :course-id id)))

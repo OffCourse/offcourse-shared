@@ -17,7 +17,7 @@
 
 (spec/def ::course (spec/keys :req-un [::course-id
                                        ::base-id
-                                       ::base/organization
+                                       ::base/repository
                                        ::curator
                                        ::goal
                                        ::version

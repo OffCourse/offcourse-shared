@@ -10,10 +10,11 @@
 (spec/def ::tags (spec/* string?))
 
 (spec/def ::resource (spec/keys :req-un [::resource-url
-                                         ::resource-type
-                                         ::description
-                                         ::content]
-                                :opt-un [::tags]))
+                                         ::resource-type]
+                                :opt-un [::content
+                                         ::bookmark-url
+                                         ::tags
+                                         ::description]))
 
 (spec/def ::resources (spec/* ::resource))
 

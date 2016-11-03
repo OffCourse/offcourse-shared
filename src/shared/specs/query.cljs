@@ -16,7 +16,7 @@
 
 (spec/def ::url string?)
 (spec/def ::original_url string?)
-(spec/def ::embedly-resource (spec/keys :req-un [::url ::original_url]))
+(spec/def ::embedly (spec/keys :req-un [::url ::original_url]))
 
 (spec/def ::query (spec/or :collection          ::collection/query
                            :bucket-items        ::aws/bucket-items
@@ -28,7 +28,7 @@
                            :course              ::course/query
                            :identity            ::identity/query
                            :profile             ::profile/profile
-                           :embedly-resources   (spec/coll-of ::embedly-resource)
+                           :embedly             (spec/coll-of ::embedly)
                            :resources           (spec/coll-of ::resource/query)
                            :github-courses      (spec/coll-of ::github/course)
                            :github-repos        (spec/coll-of ::github/repo)))

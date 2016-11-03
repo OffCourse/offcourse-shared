@@ -9,4 +9,4 @@
 (spec/def ::checkpoint  (spec/keys :req-un [::checkpoint/task ::resource/resource-url]))
 (spec/def ::checkpoints (spec/coll-of ::checkpoint))
 (spec/def ::course      (spec/keys :req-un [::course/curator ::course/goal ::checkpoints]))
-(spec/def ::user        (spec/keys :req-un [::base/user-name]))
+(spec/def ::user        (spec/keys :req-un [::base/user-name ::auth/auth-profile]))
