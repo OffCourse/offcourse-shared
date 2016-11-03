@@ -14,16 +14,21 @@
 (spec/def ::tags #{:all})
 (spec/def ::tags-query (spec/keys :req-un [::tags]))
 
-(spec/def ::query (spec/or :collection     ::collection/query
-                           :bucket-items   ::aws/bucket-items
-                           :tags           ::tags-query
-                           :github-repo    ::github/repo
-                           :resource       ::resource/query
-                           :viewmodel      ::viewmodel/viewmodel
-                           :checkpoint     ::checkpoint/query
-                           :course         ::course/query
-                           :identity       ::identity/query
-                           :profile        ::profile/profile
-                           :resources      (spec/coll-of ::resource/query)
-                           :github-courses (spec/coll-of ::github/course)
-                           :github-repos   (spec/coll-of ::github/repo)))
+(spec/def ::url string?)
+(spec/def ::original_url string?)
+(spec/def ::embedly-resource (spec/keys :req-un [::url ::original_url]))
+
+(spec/def ::query (spec/or :collection          ::collection/query
+                           :bucket-items        ::aws/bucket-items
+                           :tags                ::tags-query
+                           :github-repo         ::github/repo
+                           :resource            ::resource/query
+                           :viewmodel           ::viewmodel/viewmodel
+                           :checkpoint          ::checkpoint/query
+                           :course              ::course/query
+                           :identity            ::identity/query
+                           :profile             ::profile/profile
+                           :embedly-resources   (spec/coll-of ::embedly-resource)
+                           :resources           (spec/coll-of ::resource/query)
+                           :github-courses      (spec/coll-of ::github/course)
+                           :github-repos        (spec/coll-of ::github/repo)))

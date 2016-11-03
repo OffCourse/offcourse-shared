@@ -36,5 +36,11 @@
                        :api     ::api-event
                        :stream ::stream-event))
 
-(spec/def ::keys            (spec/* int?))
-(spec/def ::bucket-items    (spec/keys :req-un [::keys]))
+(spec/def ::item-key    string?)
+(spec/def ::bucket-name string?)
+
+
+(spec/def ::bucket-item     (spec/keys :req-un [::item-key
+                                                ::bucket-name]))
+
+(spec/def ::bucket-items    (spec/coll-of ::bucket-item))

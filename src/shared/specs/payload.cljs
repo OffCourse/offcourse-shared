@@ -28,5 +28,4 @@
                              :resources       (spec/coll-of ::resource/resource)
                              :github-courses  (spec/coll-of ::github/course)
                              :portraits       (spec/coll-of ::profile/portrait)
-                             :s3-keys         (spec/coll-of int?)
                              :dynamodb-events (spec/coll-of ::aws/dynamodb-event)))

@@ -6,8 +6,12 @@
             [shared.specs.checkpoint :as checkpoint]))
 
 (spec/def ::offcourse-id string?)
+(spec/def ::provider-id string?)
+(spec/def ::processed? boolean?)
 
 (spec/def ::bookmark (spec/keys :req-un [::resource/resource-url
                                          ::base/timestamp
-                                         ::course/curator
-                                         ::offcourse-id]))
+                                         ::course/curator]
+                                :opt-un [::offcourse-id
+                                         ::processed?
+                                         ::provider-id]))
