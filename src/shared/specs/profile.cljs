@@ -7,8 +7,9 @@
 (spec/def ::emails (spec/* map?))
 (spec/def ::portrait-url string?)
 (spec/def ::portrait-data any?)
+(spec/def ::revision int?)
 
 (spec/def ::portrait  (spec/keys :req-un [::base/user-name ::portrait-url]
                                  :opt-un [::portrait-data]))
 
-(spec/def ::profile (spec/keys :req-un [::base/user-name ::name ::emails]))
+(spec/def ::profile (spec/keys :req-un [::base/user-name ::revision ::name ::emails]))

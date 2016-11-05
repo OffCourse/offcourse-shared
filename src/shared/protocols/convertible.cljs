@@ -13,15 +13,22 @@
   (-to-payload      [this])
   (-to-action       [this])
   (-to-clj          [this])
+  (-to-json         [this])
   (-to-credentials   [this])
   (-to-viewmodel    [this])
   (-to-route        [this])
+  (-to-s3-item      [this])
   (-to-url          [this routes] [this course routes]))
 
 (defn to-credentials
   "Converts the given data to an auth-token, if the object meets the
   corresponding model specification"
   [this] (-to-credentials this))
+
+(defn to-s3-item
+  "Converts the given data into a valid aws s3 item, if the object meets the
+  corresponding model specification"
+  [this] (-to-s3-item this))
 
 (defn to-bookmark
   "Converts the given data and offcourse bookmark, if the object meets the
@@ -76,6 +83,10 @@
 (defn to-clj
   "converts javascript data to its cljs equivalent"
   ([this] (-to-clj this)))
+
+(defn to-json
+  "converts javascript data to a json object"
+  ([this] (-to-json this)))
 
 (defn to-viewmodel
   "Given the provided route-params, it returns a viewmodel"

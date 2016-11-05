@@ -9,17 +9,22 @@
             [shared.specs.aws :as aws]
             [shared.specs.raw :as raw]
             [shared.specs.bookmark :as bookmark]
+            [shared.specs.embedly :as embedly]
             [shared.specs.auth :as auth]
             [shared.specs.identity :as identity]
             [shared.specs.profile :as profile]))
 
 (spec/def ::payload (spec/or :route           ::route/route
-                             :raw-course      ::raw/course
+                             :course          ::course/course
                              :bookmark        ::bookmark/bookmark
                              :resource        ::resource/resource
                              :appstate        ::appstate/appstate
-                             :identity        ::identity/identity
+                             :portrait        ::profile/portrait
+                             :raw-resource    ::embedly/resource
+                             :raw-user        ::raw/user
+                             :raw-course      ::raw/course
                              :credentials     ::auth/credentials
+                             :identity        ::identity/identity
                              :raw-courses     (spec/coll-of ::raw/course)
                              :courses         (spec/coll-of ::course/course)
                              :raw-profiles    (spec/coll-of ::auth/auth-profile)
