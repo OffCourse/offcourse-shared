@@ -17,7 +17,8 @@
   (-to-credentials   [this])
   (-to-viewmodel    [this])
   (-to-route        [this])
-  (-to-s3-item      [this])
+  (-to-db           [this])
+  (-to-bucket       [this])
   (-to-url          [this routes] [this course routes]))
 
 (defn to-credentials
@@ -25,10 +26,15 @@
   corresponding model specification"
   [this] (-to-credentials this))
 
-(defn to-s3-item
-  "Converts the given data into a valid aws s3 item, if the object meets the
+(defn to-db
+  "Converts the given data into a valid db item, if the object meets the
   corresponding model specification"
-  [this] (-to-s3-item this))
+  [this] (-to-db this))
+
+(defn to-bucket
+  "Converts the given data into a bucket item, if the object meets the
+  corresponding model specification"
+  [this] (-to-bucket this))
 
 (defn to-bookmark
   "Converts the given data and offcourse bookmark, if the object meets the
