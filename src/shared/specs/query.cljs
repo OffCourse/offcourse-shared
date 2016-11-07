@@ -18,8 +18,13 @@
 (spec/def ::original_url string?)
 (spec/def ::embedly (spec/keys :req-un [::url ::original_url]))
 
+(spec/def ::table-name string?)
+(spec/def ::item-key   map?)
+(spec/def ::db-item    (spec/keys :req-un [::table-name ::item-key]))
+
 (spec/def ::query (spec/or :collection          ::collection/query
                            :bucket-items        ::aws/bucket-items
+                           :db-item             ::db-item
                            :tags                ::tags-query
                            :github-repo         ::github/repo
                            :resource            ::resource/query

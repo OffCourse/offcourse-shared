@@ -39,6 +39,11 @@
 (spec/def ::item-key    string?)
 (spec/def ::bucket-name string?)
 
+(spec/def ::stream-name string?)
+(spec/def ::records (spec/* map?))
+
+(spec/def ::stream-item (spec/keys :req-un [::stream-name ::records]))
+
 
 (spec/def ::bucket-item     (spec/keys :req-un [::item-key
                                                 ::bucket-name]))
