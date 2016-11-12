@@ -15,4 +15,4 @@
                               :opt-un [::base/user-name]))
 
 (spec/def ::path   string?)
-(spec/def ::course (spec/keys :req-un [::course-path ::sha ::url]))
+(spec/def ::course (spec/keys :req-un [::path ::sha ::url ::base/user-name]))
