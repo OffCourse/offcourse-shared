@@ -16,11 +16,5 @@
 (defmethod to-model :courses [payload]
   (map co/create payload))
 
-(defmethod to-model :raw-courses [payload]
-  (map co/initialize payload))
-
-(defmethod to-model :raw-course [payload]
-  (co/initialize payload))
-
 (defmethod to-model :course [payload]
   (co/create (dissoc payload :course-slug)))

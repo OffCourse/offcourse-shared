@@ -22,6 +22,9 @@
 (spec/def ::item-key   map?)
 (spec/def ::db-item    (spec/keys :req-un [::table-name ::item-key]))
 
+(spec/def :es/query map?)
+(spec/def ::es-query (spec/keys :req-un [:es/query]))
+
 (spec/def ::query (spec/or :collection          ::collection/query
                            :bucket-items        ::aws/bucket-items
                            :db-item             ::db-item
@@ -33,6 +36,7 @@
                            :course              ::course/query
                            :identity            ::identity/query
                            :profile             ::profile/profile
+                           :es-query            ::es-query
                            :embedly             (spec/coll-of ::embedly)
                            :resources           (spec/coll-of ::resource/query)
                            :github-courses      (spec/coll-of ::github/course)

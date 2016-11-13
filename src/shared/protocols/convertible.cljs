@@ -20,6 +20,7 @@
   (-to-db           [this])
   (-to-bucket       [this])
   (-to-stream       [this])
+  (-to-search       [this])
   (-to-url          [this routes] [this course routes]))
 
 (defn to-credentials
@@ -28,9 +29,14 @@
   [this] (-to-credentials this))
 
 (defn to-db
-  "Converts the given data into a valid db item, if the object meets the
+  "Converts the given data into a valid search item, if the object meets the
   corresponding model specification"
   [this] (-to-db this))
+
+(defn to-search
+  "Converts the given data into a valid db item, if the object meets the
+  corresponding model specification"
+  [this] (-to-search this))
 
 (defn to-stream
   "Converts the given data into a valid stream item, if the object meets the

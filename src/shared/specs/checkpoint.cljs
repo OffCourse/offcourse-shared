@@ -7,6 +7,9 @@
 (spec/def ::checkpoint-slug ::base/slug)
 (spec/def ::task (and string? #(helpers/min-length % 4)))
 (spec/def ::checkpoint-id int?)
-(spec/def ::checkpoint (spec/keys :req-un [::task ::resource/resource-url ::checkpoint-id]))
+
+(spec/def ::checkpoint (spec/keys :req-un [::task ::resource/resource-url ::checkpoint-id]
+                                  :opt-un [::base/tags]))
+
 (spec/def ::query      (spec/keys :req-un [::checkpoint-slug]))
 

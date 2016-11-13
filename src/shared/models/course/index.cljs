@@ -40,7 +40,6 @@
 
 (defn add-checkpoints [{:keys [checkpoints] :as course}]
   (let [checkpoints (->> checkpoints
-                         (map #(assoc % :tags []))
                          (map checkpoint/create))]
     (assoc course :checkpoints checkpoints)))
 
@@ -90,13 +89,13 @@
          :forks []
          :forked-from nil))
 
-(defn normalize-user [{:keys [curator] :as course}]
-  (assoc course :curator (clj-str/lower-case curator)))
+(defn normalize-user [course user-name]
+  (assoc course :curator (clj-str/lower-case user-name)))
 
-(defn initialize [raw-course]
-  (->> raw-course
-       create
-       normalize-user
-       order-checkpoints
-       add-id
-       add-meta))
+(defn initialize [raw-course user-name]
+  (-> raw-course
+      create
+      (normalize-user user-name)
+      order-checkpoints
+      add-id
+      add-meta))
