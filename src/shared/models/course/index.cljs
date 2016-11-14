@@ -83,11 +83,8 @@
 
 (defn add-meta [course]
   (assoc course
-         :flags ["featured"]
          :version [0 0 1]
-         :revision 1
-         :forks []
-         :forked-from nil))
+         :revision 1))
 
 (defn normalize-user [course user-name]
   (assoc course :curator (clj-str/lower-case user-name)))
