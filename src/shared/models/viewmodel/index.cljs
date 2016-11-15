@@ -37,4 +37,4 @@
 
 (defmethod from-route :home-view [params]
   (create {:collection {:collection-type "flags"
-                        :collection-name "featured"}}))
+                        :collection-name "all"}}))

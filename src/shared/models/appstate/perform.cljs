@@ -38,6 +38,9 @@
   (let [course (assoc course :revision (inc revision))]
     (setval [:courses (paths/course course)] course store)))
 
+(defmethod perform [:add :resource] [store [_ resource]]
+  (add store resource))
+
 (defmethod perform [:add :resources] [store [_ resources]]
   (reduce add store resources))
 

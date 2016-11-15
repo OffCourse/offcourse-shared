@@ -10,6 +10,9 @@
 (defmethod to-model :profile [payload]
   (profile/create payload))
 
+(defmethod to-model :resource [payload]
+  (rs/create payload))
+
 (defmethod to-model :resources [payload]
   (map rs/create payload))
 

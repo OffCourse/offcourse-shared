@@ -15,12 +15,13 @@
 
 (spec/def ::payload (spec/or :route           ::route/route
                              :resource        ::resource/resource
+                             :course          ::course/course
                              :appstate        ::appstate/appstate
                              :raw-user        ::raw/user
                              :raw-course      ::raw/course
                              :credentials     ::auth/credentials
-                             :raw-courses     (spec/coll-of ::raw/course)
                              :courses         (spec/coll-of ::course/course)
+                             :raw-courses     (spec/coll-of ::raw/course)
                              :raw-profiles    (spec/coll-of ::auth/auth-profile)
                              :raw-users       (spec/coll-of ::raw/user)
                              :bookmarks       (spec/coll-of ::bookmark/bookmark)
