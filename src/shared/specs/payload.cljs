@@ -17,6 +17,7 @@
                              :resource        ::resource/resource
                              :course          ::course/course
                              :appstate        ::appstate/appstate
+                             :identity        ::identity/identity
                              :raw-user        ::raw/user
                              :raw-course      ::raw/course
                              :credentials     ::auth/credentials

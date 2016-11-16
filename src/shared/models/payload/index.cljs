@@ -8,7 +8,6 @@
             [shared.protocols.loggable :as log]
             [cljs.spec :as spec]))
 
-
 (defn- override [payload]
   (specify payload
     Convertible
