@@ -1,9 +1,8 @@
 (ns shared.models.payload.to-model
   (:require [shared.models.course.index :as co]
-            [shared.models.resource.index :as rs]
-            [shared.protocols.specced :as sp]
             [shared.models.profile.index :as profile]
-            [shared.protocols.loggable :as log]))
+            [shared.models.resource.index :as rs]
+            [shared.protocols.specced :as sp]))
 
 (defmulti to-model (fn [payload] (sp/resolve payload)))
 
@@ -18,6 +17,3 @@
 
 (defmethod to-model :courses [payload]
   (map co/create payload))
-
-(defmethod to-model :course [payload]
-  (co/create (dissoc payload :course-slug)))

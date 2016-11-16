@@ -12,4 +12,3 @@
                                   :opt-un [::base/tags]))
 
 (spec/def ::query      (spec/keys :req-un [::checkpoint-slug]))
-

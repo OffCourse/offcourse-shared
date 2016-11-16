@@ -11,7 +11,6 @@
            :ret ::specs/action
            :fn #(spec/valid? ::specs/meta (-> %1 :ret :meta)))
 
-
 (defn- override [action]
   (specify action
     Specced

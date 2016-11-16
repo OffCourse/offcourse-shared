@@ -12,6 +12,4 @@
 (spec/def ::bookmark (spec/keys :req-un [::resource/resource-url
                                          ::base/timestamp
                                          ::course/curator]
-                                :opt-un [::offcourse-id
-                                         ::processed?
-                                         ::provider-id]))
+                                :opt-un [::offcourse-id]))

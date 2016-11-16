@@ -4,6 +4,7 @@
             [shared.models.course.index :as course]
             [com.rpl.specter :refer [ALL]]
             [shared.protocols.queryable :as qa]
+            [shared.protocols.actionable :as ac]
             [shared.protocols.specced :as sp]
             [shared.models.user.index :as user]
             [shared.protocols.loggable :as log]
@@ -44,10 +45,11 @@
 (defmethod perform [:add :resources] [store [_ resources]]
   (reduce add store resources))
 
+;; replace charlotte with real user here
 
-(defmethod perform [:fork :course] [{:keys [courses] :as store} [_ course]]
-  (let [{:keys [course-id] :as fork} (course/fork course store)
-        store (transform [:courses (paths/course course) :forks] #(conj % course-id) store)]
+(defmethod perform [:fork :course] [{:keys [courses user] :as store} [_ course]]
+  (let [{:keys [original fork]} (ac/perform course [:fork {:user-name "charlotte"}])
+        store                   (setval [:courses (paths/course course)] original store)]
     (-> store
         (add fork))))
 
