@@ -5,7 +5,6 @@
   function to deal with derived or other forms of extra data"
   (-decorate  [this] [this appstate] [this appstate routes]))
 
-
 (defn decorate
   "The decoratable function augments offcourse models with data on their meta object
   are not part of their business logic, but may be convenient or necessary for the
