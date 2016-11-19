@@ -4,7 +4,6 @@
             [shared.specs.course :as course]
             [shared.specs.checkpoint :as checkpoint]))
 
-
 (spec/def :new-course/course    nil?)
 (spec/def ::course     ::course/query)
 (spec/def ::checkpoint ::checkpoint/query)

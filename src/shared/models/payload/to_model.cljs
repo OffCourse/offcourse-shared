@@ -15,5 +15,8 @@
 (defmethod to-model :resources [payload]
   (map rs/create payload))
 
+(defmethod to-model :course [payload]
+  (co/create payload))
+
 (defmethod to-model :courses [payload]
   (map co/create payload))

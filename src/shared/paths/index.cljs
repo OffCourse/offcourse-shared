@@ -1,4 +1,4 @@
-(ns shared.models.appstate.paths
+(ns shared.paths.index
   (:require [com.rpl.specter :refer [ALL]]
             [clojure.string :as c-str]
             [shared.protocols.loggable :as log]
@@ -16,3 +16,4 @@
 
 (defn resource [{:keys [resource-url]}]
   [ALL #(= (:resource-url %) resource-url)])
+

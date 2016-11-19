@@ -7,7 +7,6 @@
   (-to-event        [this])
   (-to-events       [this])
   (-to-query        [this])
-  (-to-es-query     [this])
   (-to-bookmark     [this])
   (-to-bookmarks     [this])
   (-to-payload      [this])
@@ -82,11 +81,6 @@
   "Converts an js object to an offcourse query, if the object meets the
   corresponding model specification"
   [this] (-to-query this))
-
-(defn to-es-query
-  "Converts an offcourse query to an elasticsearch query, if the object meets the
-  corresponding model specification"
-  [this] (-to-es-query this))
 
 (defn to-payload
   "Converts an js object to an offcourse query, if the object meets the

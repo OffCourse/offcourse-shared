@@ -9,8 +9,8 @@
   (-missing-data [this query]))
 
 (defn fetch
-  "Given a query, this command will return the requested data asynchronously
-  from a remote service"
+  "Given a query, this command will return a core.async channel with the
+  requested data asynchronously from a remote service"
   ([this query] (-fetch this (query/create query)))
   ([this resource-name query] (-fetch this resource-name (query/create query))))
 

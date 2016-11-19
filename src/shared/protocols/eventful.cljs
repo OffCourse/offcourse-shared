@@ -9,7 +9,8 @@
   (-respond [this event]))
 
 (defn react
-  "Has a service react to an event based on the event's specification type"
+  "Has a service react to an event based on the event's
+  specification type"
   [this event] (-react this event))
 
 (defn respond
@@ -17,7 +18,8 @@
   [this event] (-respond this event))
 
 (defn listen
-  "Has a component listen for events on the input channel, and reacts when the event is relevant"
+  "Has a component listen for events on the input channel,
+  and reacts when the event is relevant"
   [this] (-listen this))
 
 (defn mute

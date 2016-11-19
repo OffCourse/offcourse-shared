@@ -5,7 +5,7 @@
             [clojure.set :as set]
             [shared.protocols.specced :as sp]
             [cuerdas.core :as str]
-            [shared.models.appstate.paths :as paths]
+            [shared.paths.index :as paths]
             [shared.protocols.loggable :as log])
   (:require-macros [com.rpl.specter.macros :refer [select-first]]))
 

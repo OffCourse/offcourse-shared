@@ -1,11 +1,9 @@
 (ns shared.specs.payload
   (:require [cljs.spec :as spec]
             [shared.specs.course :as course]
-            [shared.specs.appstate :as appstate]
             [shared.specs.resource :as resource]
             [shared.specs.checkpoint :as checkpoint]
             [shared.specs.github :as github]
-            [shared.specs.route :as route]
             [shared.specs.aws :as aws]
             [shared.specs.raw :as raw]
             [shared.specs.bookmark :as bookmark]
@@ -13,10 +11,8 @@
             [shared.specs.identity :as identity]
             [shared.specs.profile :as profile]))
 
-(spec/def ::payload (spec/or :route           ::route/route
-                             :resource        ::resource/resource
+(spec/def ::payload (spec/or :resource        ::resource/resource
                              :course          ::course/course
-                             :appstate        ::appstate/appstate
                              :identity        ::identity/identity
                              :raw-user        ::raw/user
                              :raw-course      ::raw/course
