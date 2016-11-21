@@ -9,13 +9,11 @@
 (spec/def ::resource-type string?)
 (spec/def ::tags (spec/* string?))
 
-(spec/def ::resource (spec/keys :req-un [::resource-url
-                                         ::resource-type]
-                                :opt-un [::content
-                                         ::bookmark-url
-                                         ::tags
-                                         ::description]))
+(spec/def :resource/valid (spec/keys :req-un [::resource-url
+                                              ::resource-type]
+                                     :opt-un [::content
+                                              ::bookmark-url
+                                              ::tags
+                                              ::description]))
 
-(spec/def ::resources (spec/* ::resource))
-
-(spec/def ::query     (spec/keys :req-un [::resource-url]))
+(spec/def :resource/query     (spec/keys :req-un [::resource-url]))

@@ -1,15 +1,7 @@
 (ns shared.models.action.index
   (:require [shared.protocols.specced :refer [Specced]]
-            [shared.specs.core :as specs]
-            [shared.specs.action :as as]
             [cljs.spec :as spec]
-            [cljs.spec.test :as stest]
             [shared.protocols.loggable :as log]))
-
-(spec/fdef create
-           :args (spec/cat :action ::specs/action)
-           :ret ::specs/action
-           :fn #(spec/valid? ::specs/meta (-> %1 :ret :meta)))
 
 (defn- override [action]
   (specify action
@@ -22,5 +14,5 @@
   "creates a new action"
   [action]
   (-> action
-      (with-meta (merge (meta action) {:spec ::specs/action}))
+      (with-meta (merge (meta action) {:spec :offcourse/action}))
       override))

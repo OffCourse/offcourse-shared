@@ -12,4 +12,4 @@
 (spec/def ::portrait  (spec/keys :req-un [::base/user-name ::portrait-url]
                                  :opt-un [::portrait-data]))
 
-(spec/def ::profile (spec/keys :req-un [::base/user-name ::revision ::name ::emails]))
+(spec/def :profile/valid (spec/keys :req-un [::base/user-name ::revision ::name ::emails]))

@@ -1,5 +1,5 @@
 (ns shared.models.bookmark.index
-  (:require [shared.specs.core :as specs]
+  (:require [shared.specs.bookmark :as specs]
             [shared.protocols.convertible :refer [Convertible]]
             [shared.models.query.index :as query]))
 

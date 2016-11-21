@@ -1,12 +1,8 @@
 (ns shared.models.course.get
   (:refer-clojure :exclude [get])
-  (:require [shared.specs.core :as specs]
-            [shared.protocols.queryable :refer [Queryable]]
-            [clojure.set :as set]
-            [shared.protocols.specced :as sp]
-            [cuerdas.core :as str]
+  (:require [clojure.set :as set]
             [shared.paths.index :as paths]
-            [shared.protocols.loggable :as log])
+            [shared.protocols.specced :as sp])
   (:require-macros [com.rpl.specter.macros :refer [select-first]]))
 
 (defmulti get (fn [_ query]

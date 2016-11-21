@@ -9,7 +9,7 @@
 (spec/def ::provider-id string?)
 (spec/def ::processed? boolean?)
 
-(spec/def ::bookmark (spec/keys :req-un [::resource/resource-url
-                                         ::base/timestamp
-                                         ::course/curator]
-                                :opt-un [::offcourse-id]))
+(spec/def :bookmark/valid (spec/keys :req-un [::resource/resource-url
+                                              ::base/timestamp
+                                              ::course/curator]
+                                     :opt-un [::offcourse-id]))

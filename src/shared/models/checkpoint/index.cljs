@@ -1,5 +1,5 @@
 (ns shared.models.checkpoint.index
-  (:require [shared.specs.core :as specs]
+  (:require [shared.specs.checkpoint :as specs]
             [shared.protocols.queryable :refer [Queryable]]))
 
 (defrecord Checkpoint [])

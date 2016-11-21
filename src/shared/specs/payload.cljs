@@ -6,8 +6,8 @@
             [shared.specs.github :as github]
             [shared.specs.aws :as aws]
             [shared.specs.raw :as raw]
-            [shared.specs.bookmark :as bookmark]
             [shared.specs.auth :as auth]
+            [shared.specs.bookmark :as bookmark]
             [shared.specs.identity :as identity]
             [shared.specs.profile :as profile]))
 
@@ -16,10 +16,10 @@
                              :identity        ::identity/identity
                              :raw-user        ::raw/user
                              :raw-course      ::raw/course
-                             :credentials     ::auth/credentials
+                             :credentials     :offcourse/credentials
                              :courses         (spec/coll-of ::course/course)
                              :raw-courses     (spec/coll-of ::raw/course)
-                             :raw-profiles    (spec/coll-of ::auth/auth-profile)
+                             :raw-profiles    (spec/coll-of :offcourse/auth-profile)
                              :raw-users       (spec/coll-of ::raw/user)
                              :bookmarks       (spec/coll-of ::bookmark/bookmark)
                              :resources       (spec/coll-of ::resource/resource)

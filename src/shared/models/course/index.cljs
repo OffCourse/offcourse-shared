@@ -7,8 +7,7 @@
             [shared.protocols.actionable :as ac :refer [Actionable]]
             [shared.protocols.convertible :refer [Convertible]]
             [shared.protocols.queryable :refer [Queryable]]
-            [shared.protocols.specced :refer [Specced]]
-            [shared.specs.core :as specs]))
+            [shared.protocols.specced :refer [Specced]]))
 
 (defrecord Course []
   Queryable
@@ -26,7 +25,7 @@
   (-> raw-course
       (update :checkpoints #(map checkpoint/create %1))
       map->Course
-      (with-meta {:spec ::specs/course})))
+      (with-meta {:spec :offcourse/course})))
 
 (defn initialize [raw-course]
   (-> raw-course

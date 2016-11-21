@@ -6,10 +6,8 @@
 (spec/def ::tags (spec/* string?))
 (spec/def ::url string?)
 
-(spec/def ::user-name (spec/and string? #(helpers/min-length % 3)))
+(spec/def :base/user-name (spec/and string? #(helpers/min-length % 3)))
 (spec/def ::timestamp int?)
 
-(spec/def ::slug string?)
-(spec/def ::organization string?)
-
-(def valid-modes #{:view-mode :edit-mode :auth :new-user :edit-profile :view-profile})
+(spec/def :base/slug string?)
+(spec/def :base/organization string?)

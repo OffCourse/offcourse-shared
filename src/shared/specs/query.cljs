@@ -1,7 +1,6 @@
 (ns shared.specs.query
   (:require [cljs.spec :as spec]
             [shared.specs.base :as base]
-            [shared.specs.viewmodel :as viewmodel]
             [shared.specs.course :as course]
             [shared.specs.resource :as resource]
             [shared.specs.github :as github]
@@ -31,7 +30,6 @@
                            :tags                ::tags-query
                            :github-repo         ::github/repo
                            :resource            ::resource/query
-                           :viewmodel           ::viewmodel/viewmodel
                            :checkpoint          ::checkpoint/query
                            :course              ::course/query
                            :identity            ::identity/query
