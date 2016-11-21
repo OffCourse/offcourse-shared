@@ -24,7 +24,7 @@
 (spec/def :es/query map?)
 (spec/def ::es-query (spec/keys :req-un [:es/query]))
 
-(spec/def ::query (spec/or :collection          ::collection/query
+#_(spec/def ::query (spec/or :collection          ::collection/query
                            :bucket-items        ::aws/bucket-items
                            :db-item             ::db-item
                            :tags                ::tags-query

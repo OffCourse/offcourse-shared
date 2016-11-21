@@ -10,6 +10,8 @@
             [shared.specs.auth]
             [shared.specs.profile]))
 
+(spec/def ::error any?)
+
 (spec/def :offcourse/offcourse-id    string?)
 (spec/def :offcourse/bookmark        :bookmark/valid)
 (spec/def :offcourse/credentials     :auth/credentials)
@@ -20,9 +22,11 @@
 (spec/def :offcourse/profile         :profile/valid)
 (spec/def :offcourse/identity        :identity/valid)
 (spec/def :offcourse/actions         :action/types)
+(spec/def :offcourse/error           (spec/keys :req-un [::error]))
 
 (spec/def :query/course              :course/query)
 (spec/def :query/collection          :collection/query)
 (spec/def :query/checkpoint          :checkpoint/query)
 (spec/def :query/checkpoint          :checkpoint/query)
 (spec/def :query/resource            :resource/query)
+(spec/def :query/identity            :identity/query)
