@@ -8,8 +8,8 @@
 (spec/def :checkpoint/task            (and string? #(helpers/min-length % 4)))
 (spec/def :checkpoint/checkpoint-id   int?)
 
-(spec/def :checkpoint/valid (spec/keys :req-un [:checkpoint/task ::resource/resource-url
+(spec/def :checkpoint/valid (spec/keys :req-un [:checkpoint/task :resource/resource-url
                                                 :checkpoint/checkpoint-id]
-                                       :opt-un [::base/tags]))
+                                       :opt-un [:base/tags]))
 
 (spec/def :checkpoint/query (spec/keys :req-un [:checkpoint/checkpoint-slug]))

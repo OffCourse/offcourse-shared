@@ -17,14 +17,14 @@
 (spec/def ::score int?)
 (spec/def ::count int?)
 
-(spec/def ::author (spec/keys :req-un [::name]))
-(spec/def ::authors (spec/* ::author))
+(spec/def ::author   (spec/keys :req-un [::name]))
+(spec/def ::authors  (spec/* ::author))
 
-(spec/def ::keyword (spec/keys :req-un [::score ::name]))
+(spec/def ::keyword  (spec/keys :req-un [::score ::name]))
 (spec/def ::keywords (spec/* ::keyword))
 
 
-(spec/def ::entity (spec/keys :req-un [::count ::name]))
+(spec/def ::entity   (spec/keys :req-un [::count ::name]))
 
 (spec/def ::entities (spec/* ::entity))
 

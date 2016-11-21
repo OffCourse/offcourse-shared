@@ -10,6 +10,7 @@
             [shared.specs.auth]
             [shared.specs.profile]))
 
+(spec/def :offcourse/offcourse-id    string?)
 (spec/def :offcourse/bookmark        :bookmark/valid)
 (spec/def :offcourse/credentials     :auth/credentials)
 (spec/def :offcourse/course          :course/valid)

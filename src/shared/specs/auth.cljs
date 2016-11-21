@@ -1,6 +1,5 @@
 (ns shared.specs.auth
-  (:require [cljs.spec :as spec]
-            [shared.specs.base :as base]))
+  (:require [cljs.spec :as spec]))
 
 (spec/def ::picture string?)
 (spec/def ::auth-token (spec/nilable string?))
