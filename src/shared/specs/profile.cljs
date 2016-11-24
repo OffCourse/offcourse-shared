@@ -9,7 +9,7 @@
 (spec/def ::portrait-data any?)
 (spec/def ::revision int?)
 
-(spec/def ::portrait  (spec/keys :req-un [::base/user-name ::portrait-url]
-                                 :opt-un [::portrait-data]))
+(spec/def :profile/portrait  (spec/keys :req-un [::base/user-name ::portrait-url]
+                                        :opt-un [::portrait-data]))
 
 (spec/def :profile/valid (spec/keys :req-un [::base/user-name ::revision ::name ::emails]))

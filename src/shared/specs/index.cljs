@@ -20,6 +20,7 @@
 (spec/def :offcourse/checkpoint      :checkpoint/valid)
 (spec/def :offcourse/resource        :resource/valid)
 (spec/def :offcourse/profile         :profile/valid)
+(spec/def :offcourse/portrait        :profile/portrait)
 (spec/def :offcourse/identity        :identity/valid)
 (spec/def :offcourse/actions         :action/types)
 (spec/def :offcourse/error           (spec/keys :req-un [::error]))
