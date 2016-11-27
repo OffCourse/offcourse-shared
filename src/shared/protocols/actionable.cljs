@@ -2,6 +2,8 @@
   (:require [shared.models.action.index :as action]))
 
 (defprotocol Actionable
+  "The Actionable protocol allows offcourse components, models, and adapters to
+  handle and respond to offcourse events"
   (-request [this action])
   (-perform [this action] [this resource-name action]))
 

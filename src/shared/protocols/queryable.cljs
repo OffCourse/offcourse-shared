@@ -3,6 +3,8 @@
   (:require [shared.models.query.index :as query]))
 
 (defprotocol Queryable
+  "The Queryable protocol allows offcourse components, models, and adapters to
+  handle and respond to offcourse queries"
   (-fetch   [this query] [this resource-name query])
   (-get     [this query])
   (-check   [this] [this query])
