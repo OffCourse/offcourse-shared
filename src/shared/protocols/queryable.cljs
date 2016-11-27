@@ -14,6 +14,7 @@
   "Given a query, this command will return a core.async channel with the
   requested data asynchronously from a remote service"
   ([this query] (-fetch this (query/create query)))
+  ;; don't rely on the arity-3 function will most likely disappear
   ([this resource-name query] (-fetch this resource-name (query/create query))))
 
 (defn get

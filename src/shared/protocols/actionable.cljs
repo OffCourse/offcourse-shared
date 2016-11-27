@@ -14,4 +14,5 @@
 (defn perform
   "exectutes an synchronize action with (possible) side-effects"
   ([this action] (-perform this (action/create action)))
+  ;; don't rely on the arity-3 function will most likely disappear
   ([this resource-name action] (-perform this resource-name (action/create action))))
