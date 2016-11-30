@@ -8,18 +8,18 @@
   (-to-events       [this])
   (-to-query        [this])
   (-to-bookmark     [this])
-  (-to-bookmarks     [this])
+  (-to-bookmarks    [this])
   (-to-payload      [this])
   (-to-action       [this])
   (-to-clj          [this])
   (-to-json         [this])
-  (-to-credentials   [this])
+  (-to-credentials  [this])
   (-to-viewmodel    [this])
   (-to-route        [this])
-  (-to-db           [this])
-  (-to-bucket       [this])
-  (-to-stream       [this])
-  (-to-search       [this])
+  (-to-db           [this table-name])
+  (-to-bucket       [this bucket-name])
+  (-to-stream       [this stream-name])
+  (-to-search       [this index-name])
   (-to-url          [this routes] [this course routes]))
 
 (defn to-credentials
@@ -30,22 +30,22 @@
 (defn to-db
   "Converts the given data into a valid search item, if the object meets the
   corresponding model specification"
-  [this] (-to-db this))
+  [this] (-to-db this table-name))
 
 (defn to-search
   "Converts the given data into a valid db item, if the object meets the
   corresponding model specification"
-  [this] (-to-search this))
+  [this] (-to-search this index-name))
 
 (defn to-stream
   "Converts the given data into a valid stream item, if the object meets the
   corresponding model specification"
-  [this] (-to-stream this))
+  [this] (-to-stream this stream-name))
 
 (defn to-bucket
   "Converts the given data into a bucket item, if the object meets the
   corresponding model specification"
-  [this] (-to-bucket this))
+  [this] (-to-bucket this bucket-name))
 
 (defn to-bookmark
   "Converts the given data and offcourse bookmark, if the object meets the
