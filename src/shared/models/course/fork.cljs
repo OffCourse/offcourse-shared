@@ -2,15 +2,14 @@
   (:require [clojure.string :as clj-str]
             [shared.protocols.actionable :as ac]))
 
-
-(defn create-fork [{:keys [base-id course-id repository] :as course} {:keys [user-name]}]
+(defn create-fork [{:keys [base-id course-id repository] :as course} user-name]
   (let [hash (last (clj-str/split base-id "::"))
         new-id (str repository "::" user-name "::" hash)]
     (assoc course
            :course-id new-id
            :revision 1
            :forked-from course-id
-           :curator "charlotte")))
+           :curator user-name)))
 
 (defn update-original [course fork]
   (-> course
