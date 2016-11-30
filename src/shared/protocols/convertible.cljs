@@ -17,7 +17,7 @@
   (-to-viewmodel    [this])
   (-to-route        [this])
   (-to-db           [this table-name])
-  (-to-bucket       [this bucket-name])
+  (-to-bucket       [this] [this bucket-name])
   (-to-stream       [this stream-name])
   (-to-search       [this index-name])
   (-to-url          [this routes] [this course routes]))
@@ -45,7 +45,8 @@
 (defn to-bucket
   "Converts the given data into a bucket item, if the object meets the
   corresponding model specification"
-  [this bucket-name] (-to-bucket this bucket-name))
+  ([this] (-to-bucket this))
+  ([this bucket-name] (-to-bucket this bucket-name)))
 
 (defn to-bookmark
   "Converts the given data and offcourse bookmark, if the object meets the
