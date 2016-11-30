@@ -30,22 +30,22 @@
 (defn to-db
   "Converts the given data into a valid search item, if the object meets the
   corresponding model specification"
-  [this] (-to-db this table-name))
+  [this table-name] (-to-db this table-name))
 
 (defn to-search
   "Converts the given data into a valid db item, if the object meets the
   corresponding model specification"
-  [this] (-to-search this index-name))
+  [this index-name] (-to-search this index-name))
 
 (defn to-stream
   "Converts the given data into a valid stream item, if the object meets the
   corresponding model specification"
-  [this] (-to-stream this stream-name))
+  [this stream-name] (-to-stream this stream-name))
 
 (defn to-bucket
   "Converts the given data into a bucket item, if the object meets the
   corresponding model specification"
-  [this] (-to-bucket this bucket-name))
+  [this bucket-name] (-to-bucket this bucket-name))
 
 (defn to-bookmark
   "Converts the given data and offcourse bookmark, if the object meets the
