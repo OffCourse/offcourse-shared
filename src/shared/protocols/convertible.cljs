@@ -35,7 +35,7 @@
 (defn to-search
   "Converts the given data into a valid db item, if the object meets the
   corresponding model specification"
-  [this index-name] (-to-search this index-name))
+  [this] (-to-search this))
 
 (defn to-stream
   "Converts the given data into a valid stream item, if the object meets the
