@@ -16,10 +16,10 @@
   (-to-credentials  [this])
   (-to-viewmodel    [this])
   (-to-route        [this])
-  (-to-db           [this table-name])
-  (-to-bucket       [this] [this bucket-name])
-  (-to-stream       [this stream-name])
-  (-to-search       [this index-name])
+  (-to-db           [this table-names])
+  (-to-bucket       [this] [this bucket-names])
+  (-to-stream       [this stream-names])
+  (-to-search       [this])
   (-to-url          [this routes] [this course routes]))
 
 (defn to-credentials
