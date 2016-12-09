@@ -1,5 +1,5 @@
 (def project 'ofcourse/shared)
-(def version "0.5.6")
+(def version "0.5.7")
 
 (set-env!
  :resource-paths #{"src"}

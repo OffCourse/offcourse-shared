@@ -27,4 +27,6 @@
                                             :course/forks
                                             :course/forked-from]))
 
-(spec/def :course/query       (spec/keys :req-un [:course/course-slug :course/curator]))
+(spec/def :course/query       (spec/or :by-slug (spec/keys :req-un [:course/course-slug
+                                                                    :course/curator])
+                                       :by-id (spec/keys :req-un [:course/course-id])))
