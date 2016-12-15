@@ -5,6 +5,7 @@
             [shared.specs.query]
             [shared.specs.bookmark]
             [shared.specs.collection]
+            [shared.specs.action]
             [shared.specs.course]
             [shared.specs.checkpoint]
             [shared.specs.resource]
