@@ -6,5 +6,5 @@
 (spec/def :action/valid (spec/multi-spec action-spec :action-type))
 
 (spec/def :action/types #{:go :extract :verify :update :put :import :download :filter
-                          :split :switch-to :transform :authenticate :sign-in :sign-up
+                          :decode :split :switch-to :transform :authenticate :sign-in :sign-up
                           :sign-out :save :add :index :remove :fork :create})
