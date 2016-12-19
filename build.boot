@@ -1,5 +1,5 @@
 (def project 'ofcourse/shared)
-(def version "0.5.9")
+(def version "0.5.10")
 
 (set-env!
  :resource-paths #{"src"}
@@ -44,9 +44,11 @@
                :version version)
         (target)))
 
-
-
 (deftask dev []
   (comp (watch)
         (cljs-repl)
         (build)))
+
+(deftask deploy []
+  (comp (build-jar)
+        (push-release)))
